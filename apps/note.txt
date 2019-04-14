@@ -1,0 +1,25 @@
+chay init ra package.json
+
+apps: chua code toan project
+    controllers: 
+    models: luu tru code theo chuc nang 
+    views: dat template, ren do html
+    helpers: chua function dung chung toan bo ung dung
+
+public: chua file css, js, imgs
+
+config: chua file config
+
+test: viet test, unit test
+
+app.js: khoi tao ung dung
+
+bcrypt: ma hoa passwd
+
+
+Khi học Nodejs
+1. Phân router -> làm sao khi người ta vào địa chỉ nào trên url  trình duyệt => trả về trang nào, xử lý ntn
+2. Làm sao để connect với db -> lấy dữ liệu, tạo mới, update, ....
+3. Authentication -> một người chưa đăng nhập -> ko cho ngta vào một trang yêu cầu đăng nhập
+=> middleware trong express nodejs là gì!!!!
+4. ejs => dùng nó ntn

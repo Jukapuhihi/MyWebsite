@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="https://image.flaticon.com/icons/png/512/997/997507.png">
+    <link rel="stylesheet" type="text/css" href="/static/css/signin.css">
+    <title>Đăng nhập</title>
+
+    <!-- compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="signinbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">Đăng nhập</div>
+                    <div class="panel-title">
+                        <a href="/" class="btn btn-info" style="color: white;">X</a>
+                    </div>
+
+                </div>
+
+                <div class="panel-body">
+                    <form id="signinform" class="form-horizontal" role="form" method="POST" action="/guess/signin">
+
+                        <p class="">Đăng nhập ngay để tận hưởng những ưu đãi từ chúng tôi!</p>
+
+                        <% if (data && data.error){%>
+                        <div id="signin-alert" class="alert alert-danger col-sm-12">
+                            <%= data.error %>
+                        </div>
+                        <%}%>
+        
+                        <div class="form-group">
+                            <label for="username" class="col-md-3 control-label">Tên đăng nhập</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="username" placeholder="Nhập tên đăng nhập">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="col-md-3 control-label">Mật khẩu</label>
+                            <div class="col-md-9">
+                                <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <!-- Button -->
+                            <div class="col-md-offset-3 col-md-9">
+                                <input id="btn-signin" type="submit" class="btn btn-info" value="Đăng nhập" />
+                                <a href="/admin/signinadmin" class="btn btn-success">Đăng nhập Admin</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12 control">
+                                <div style="border-top: 1px solid #888; padding-top: 15px; font-size: 85%;">
+                                    Bạn chưa có tài khoản?
+                                    <a href="/guess/signup">Đăng ký ngay tại đây!</a>
+                                </div>
+                            </div>
+                        </div>
+        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <script>
+        $(document).ready(function () {
+            $("#btn-cancel").on("click", function () {
+                $(".container").fadeOut();
+            });
+        });
+    </script> -->
+</body>
+</html>

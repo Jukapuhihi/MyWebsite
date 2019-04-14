@@ -1,0 +1,7 @@
+.panel-heading {
+    display: flex;
+    justify-content: space-between;
+}
+.panel-title {
+    line-height: 35px;
+}
