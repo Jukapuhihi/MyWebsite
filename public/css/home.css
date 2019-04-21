@@ -12,6 +12,7 @@
     --dark: #10161a;
     --border: #eee;
     --gray: #fafafa;
+    --itembg: #266bf54d;
 }
 html {
     font-size: 62.5%; /* 1rem = 10px */
@@ -147,19 +148,86 @@ img {
     background-color: #5cb85cec;
     border: 1px solid #5cb85cec;
 }
+ */
+
 #btn-cart {
-    height: 3.5rem;
+    height: 3rem;
     margin-left: 1.5rem;
+    margin-bottom: 1rem;
     outline: none;
 }
 #btn-cart i {
     font-size: 3rem;
-    color: white;
+    color: var(--primary);
 }
 #btn-cart i:hover {
-    color: #f1caca;
+    color: var(--itembg);
 }
- */
+
+
+/* category */
+.intro {
+    margin: 10rem 2rem;
+    text-align: center;
+}
+.intro__title {
+    margin-bottom: 10rem;
+    position: relative;
+}
+.intro__title:after {
+    background-color: var(--primary);
+    display: block;
+    content: "";
+    position: absolute;
+    top: 120%;
+    left: 48%;
+    width: 60px;
+    height: 4px;
+}
+.intro__content {
+    border: 1px solid var(--border);
+    padding: 3rem 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+.intro__content i {
+    color: var(--primary);
+    font-size: 36px;
+    margin: 1.5rem;
+}
+.intro__content-title {
+    font-size: 2.1rem;
+}
+.intro__content-para {
+    color: gray;
+    margin-bottom: 1.5rem;
+}
+.intro__content-more {
+    color: var(--primary);
+}
+.intro__content-more:hover {
+    color: #4f7ad1;
+}
+.intro__content:hover .intro__content-title {
+    color: var(--primary);
+}
+.intro__content:before {
+    display: block;
+    background-color: var(--itembg);
+    content:"";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    z-index: -1;
+    transition: 0.2s;
+}
+.intro__content:hover:before {
+    width: 100%;
+}
+/* end category */
+
 
 /* poster */
 .poster {
@@ -216,32 +284,6 @@ img {
 }
 .dots {
     text-align: center;
-}
-
-
-.container {
-    margin: 2rem 8rem;
-}
-.category {
-    width: 25%;
-}
-.category__list {
-    list-style-type: none;
-}
-.category__link {
-    display: block;
-    color: var(--dark);
-    border: 1px solid var(--border);
-    border-bottom: none;
-    line-height: 3.5rem;
-    padding-left: 1.5rem;
-    background-color: #d8dff5;
-}
-.category__link:last-child {
-    border-bottom: 1px solid var(--border);
-}
-.content {
-    width: 75%;
 }
 
 .footer {
