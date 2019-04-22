@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $(".owl-carousel").owlCarousel({
         items: 1,
         margin: 50,
@@ -16,21 +16,21 @@ $(document).ready(function() {
     });
 });
 
-$(document).ready(function() {
-    $(".nav__toggler").click(function() {
+$(document).ready(function () {
+    $(".nav__toggler").click(function () {
         $(".nav").toggleClass("nav--active");
     });
     const wd = $(window);
-    $(".dropdown").click(function() {
+    $(".dropdown").click(function () {
         if (wd.width() < 768) {
             $(".dropdown").toggleClass("dropdown--open");
             $(".dropdown__list").slideToggle(200);
         }
     });
-    wd.on("scroll", function() {
-       onWindowScroll();
+    wd.on("scroll", function () {
+        onWindowScroll();
     });
-    $(".go-to-top").click(function() {
+    $(".go-to-top").click(function () {
         $("body, html").animate({
             scrollTop: 0
         }, 1000);
@@ -55,13 +55,18 @@ $(document).ready(function() {
 
     function onWindowScroll() {
         if (wd.scrollTop() <= 60) {
-            $(".header__pagename").css("color","white");
-            $("#btn-cart i").css("color","white");
+            $(".header__pagename").css("color", "white");
+            $("#btn-cart i").css("color", "white");
+            var width = wd.width();
+            if (width <= 767) {
+                $(".header__pagename").css("color", "var(--primary)");
+                $("#btn-cart i").css("color", "var(--primary)");
+            }
         }
-        if ( wd.scrollTop() > 60 ) {
+        if (wd.scrollTop() > 60) {
             $(".nav").removeClass("nav--transparent");
-            $(".header__pagename").css("color","var(--primary)");
-            $("#btn-cart i").css("color","var(--primary)");
+            $(".header__pagename").css("color", "var(--primary)");
+            $("#btn-cart i").css("color", "var(--primary)");
         }
         else {
             $(".nav").addClass("nav--transparent");
@@ -75,4 +80,5 @@ $(document).ready(function() {
         }
     }
     onWindowScroll();
+
 });

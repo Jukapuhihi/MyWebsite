@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <%- include ./layout/head %>
+    <%- include ../layout/head %>
 
     <title>Trang chủ</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/home.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/home.css">
 </head>
 
 <body>
-    <%- include ./layout/header %>
+    <%- include header %>
 
     <div class="category intro" id="about">
         <h1 class="intro__title">Danh mục sản phẩm</h1>
@@ -23,7 +23,7 @@
             <p class="intro__content-para">Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero sit
                 amet.
             </p>
-            <a href="/guess/category/bodyskin" class="intro__content-more">Xem thêm</a>
+            <a href="#" class="intro__content-more">Xem thêm</a>
         </div>
         <div class="intro__content">
             <i class="far fa-smile-wink"></i>
@@ -151,10 +151,10 @@
         <i class="fas fa-angle-up"></i>
     </button>
 
-    <%- include ./layout/footer %>
-    <script src="../static/libs/owlcarousel/owl.carousel.js"></script>
-    <script src="../static/libs/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../static/js/home.js"></script>
+    <%- include ../layout/footer %>
+    <script src="../../static/libs/owlcarousel/owl.carousel.js"></script>
+    <script src="../../static/libs/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../../static/js/home.js"></script>
 </body>
 
 </html>

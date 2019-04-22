@@ -186,9 +186,28 @@
     background-color: #5789ec;
 }
 
+.form-search {
+    display: flex;
+    margin-top: 3.5rem;
+    margin-left: 40rem;
+}
+.input__search {
+    height: 4rem;
+}
+.col-md-6 {
+    padding: 0 5px;
+}
+#btn-search {
+    outline: none;
+}
+#btn-search i {
+    color: var(--primary);
+}
+
+
 @media only screen and (min-width: 768px) {
     body {
-        height: 2000px;
+        min-height: 2000px;
     }
     .nav--transparent {
         background: transparent;
@@ -273,5 +292,10 @@
         opacity: 1;
         max-height: 10rem;
     }   
+}
 
+@media only screen and (max-width: 768px) {
+    .form-search {
+        margin-left: 12.8rem;
+    }
 }

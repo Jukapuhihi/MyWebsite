@@ -8,6 +8,10 @@ router.get("/", function (req, res) {
     res.render("home", { data: {} });
 });
 
+router.get("/category/bodyskin", function(req, res){
+    res.render("category/bodyskin", {data:{error: false}});
+});
+
 router.get("/signup", function (req, res) {
     res.render("signup", { data: {} });
 });

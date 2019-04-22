@@ -156,8 +156,8 @@ img {
 
 /* purposeposter */
 .purposeposter {
-    display: flex;
     margin-bottom: 3rem;
+    display: flex;
 }
 .purpose {
     margin: 2rem;
@@ -246,6 +246,17 @@ img {
 .dots {
     text-align: center;
 }
+@media only screen and (max-width: 768px) {
+    .purposeposter {
+        flex-wrap: wrap;
+    }
+    .poster {
+        width: 100%;
+    }
+    .purpose {
+        width: 100%;
+    }
+}
 /* end purposeposter */
 
 
@@ -319,6 +330,15 @@ img {
 .contact__list {
     list-style-type: none;
     padding-left: 4rem;
+}
+@media only screen and (max-width: 767px) {
+    .footer {
+        flex-wrap: wrap;
+    }
+    .footer__name, .footer__contact {
+        width: 100%;
+        margin-left: 10rem;
+    }
 }
 
 

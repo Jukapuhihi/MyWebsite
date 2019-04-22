@@ -47,9 +47,7 @@
         </a>
       </div>
 
-      <div class="nav__toggler">
-        <span class="nav__toggler-icon"></span>
-      </div>
+      
       <ul class="nav__list">
         <li class="nav__item">
           <a href="#home" class="nav__link">Trang chủ</a>
@@ -70,7 +68,10 @@
       </ul>
       <button type="button" id="btn-cart" class="btn btn-link">
         <i class="fas fa-shopping-cart"></i>
-    </button>
+      </button>
+      <div class="nav__toggler">
+        <span class="nav__toggler-icon"></span>
+      </div>
     </div>
   </nav>
 
@@ -87,6 +88,15 @@
       <button id="btn-signin" class="header__more" type="button">
         <a href="/guess/signin">Đăng nhập</a>
       </button>
+
+      <div class="form-group form-search">
+        <div class="col-md-6">
+          <input type="text" class="form-control input__search" name="keyword" placeholder="Nhập từ khóa">
+        </div>
+        <button type="submit" id="btn-search" class="btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
     </form>
   </div>
 </header>
