@@ -40,121 +40,33 @@ img {
     display: inline-block;
     border-radius: 3px;
     cursor: pointer;
-  }
-  .ct-btn:hover {
+}
+.ct-btn:hover {
     color: var(--dark);
     opacity: 0.8;
-  }
-  .ct-btn--primary {
+}
+.ct-btn--primary {
     background: var(--primary);
     color: white;
-  }
-  .ct-btn--primary:hover {
+}
+.ct-btn--primary:hover {
     color: white;
-  }
+}
 .go-to-top {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
     z-index: 100;
-  }
-
-/* .header {
-    width: 100%;
-    position: relative;
-    display: flex;
-    height: 6rem;
-    background-color: var(--primary);
-    margin-bottom: 3rem;
-}
-.header__logo {
-    display: flex;
-    cursor: pointer;
-}
-.header__img {
-    margin-left: 2rem;
-}
-.header__img img {
-    height: 6rem;
-    padding: 1rem;
-}
-.header__pagename {
-    vertical-align: middle;
-    font-size: 2rem;
-    margin-right: 3rem;
-    font-weight: bold;
-    color: rgb(236, 221, 229);
 }
 
 
-.nav__list {
-    list-style-type: none;
-    display: flex;
-}
-.nav__item {
-    padding: 0 2rem;
-    border-left: 1px solid var(--border);
-}
-.nav__item:last-child {
-    border-right: 1px solid var(--border);
-}
-.nav__link {
-    color: #ffffff;
-    line-height: 6rem;
-    font-weight: 700;
-    display: block;
-}
-.nav__link:hover {
-    color: var(--dark);
-}
-.nav__item:hover {
-    background-color: var(--border);
-}
-.nav__item--active {
-    background-color: var(--border);
-    color: var(--primary);
-}
-.nav__item--active .nav__link {
-    color: var(--dark);
-}
-
-
-.header__form {
-    display: flex;
-    position: absolute;
-    top: 0; 
-    right: 10rem;
-    margin-top: 1.4rem;
-}
-.form-search {
-    display: flex;
-    margin-right: 2rem;
-}
-#btn-search {
-    margin-left: -1rem;
-}
-#btn-search:hover {
-    background-color: #d3d1d1;
-}
-#btn-signin, #btn-signup {
-    height: 3.5rem;
-    margin-left: 1rem;
-    border: 1px solid #5cb85c;
-}
-#btn-signin a, #btn-signup a {
-    color: white;
-}
-#btn-signin:hover, #btn-signup:hover {
-    background-color: #5cb85cec;
-    border: 1px solid #5cb85cec;
-}
- */
 
 #btn-cart {
     height: 3rem;
     margin-left: 1.5rem;
     margin-bottom: 1rem;
     outline: none;
+    position: relative;
 }
 #btn-cart i {
     font-size: 3rem;
@@ -163,11 +75,24 @@ img {
 #btn-cart i:hover {
     color: var(--itembg);
 }
+#btn-cart:after {
+    position: absolute;
+    display: block;
+    content: '0';
+    top: 0;
+    left: 70%;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid white;
+    border-radius: 50% 50%;
+    color: white;
+    background-color: tomato;
+}
 
 
 /* category */
 .intro {
-    margin: 10rem 2rem;
+    margin: 10rem 2rem 3rem 2rem;
     text-align: center;
 }
 .intro__title {
@@ -229,15 +154,51 @@ img {
 /* end category */
 
 
-/* poster */
+/* purposeposter */
+.purposeposter {
+    display: flex;
+    margin-bottom: 3rem;
+}
+.purpose {
+    margin: 2rem;
+    width: 50%;
+    vertical-align: top;
+    padding-left: 3rem;
+}
+.purpose__title {
+    position: relative;
+    margin-bottom: 7rem;
+}
+.purpose__title:after {
+    background-color: var(--primary);
+    display: block;
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 40px;
+    height: 4px;
+}
+.purpose__content {
+    color: rgb(160, 158, 158);
+}
+.purpose__content p {
+    line-height: 35px;
+}
+.purpose__content i {
+    color: var(--primary);
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 35px;
+    vertical-align: middle;
+}
+
 .poster {
-    width: 100%;
-    margin-top: 10rem;
-    /* position: absolute;
-    top: 8rem; */
+    width: 50%;
+    margin-top: 5rem;
 }
 .slide__image {
-    height: 50rem;
+    height: 40rem;
 }
 .slide__image img {
     width: 100%;
@@ -285,6 +246,58 @@ img {
 .dots {
     text-align: center;
 }
+/* end purposeposter */
+
+
+/* giveinfo */
+.giveinfo {
+    text-align: center;
+    margin-bottom: 10rem;
+    margin-top: 6rem;
+  }
+  .giveinfo__logo img {
+    margin: 0 auto;
+    width: 8rem;
+    height: 8rem;
+  }
+  .giveinfo__para {
+    margin: 3.5rem;
+    color: #999797;
+    font-size: 2.4rem;
+    font-style: italic;
+  }
+  .giveinfo__email {
+    width: 40rem;
+    height: 7rem;
+    border: 0.1rem solid #cdcdcd;
+    font-size: 2rem;
+    font-style: italic;
+    color: #cdcdcd;
+    padding: 3rem;
+  }
+  .giveinfo__btn {
+    width: 12.5rem;
+    height: 7rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    font-size: 2.4rem;
+    text-transform: uppercase;
+  }
+  @media only screen and (max-width: 767px) {
+    .giveinfo {
+        margin-bottom: 13rem;
+      }
+      .giveinfo__form {
+        display: flex;
+        flex-wrap: nowrap;
+      }
+      .giveinfo__btn {
+        margin-left: 0.5rem;
+      }
+  }
+/* end giveinfo */
+
 
 .footer {
     background-color: var(--primary);
