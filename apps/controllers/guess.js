@@ -91,7 +91,12 @@ router.post("/signin", function (req, res) {
                 else {
                     req.session.user = user; //lưu thông tin user trong session
                     console.log(req.session.user);
-                    res.redirect("/member/");
+                    if (req.session.user.roleID === 0) {
+                        res.redirect("/member/home");
+                    }
+                    else if (req.session.user.roleID === 1) {
+                        res.redirect("/manager/prodMgt/listprod");
+                    }
                 }
             });
         }
