@@ -3,6 +3,7 @@ const router = express.Router();
 
 const userMd = require("../models/user");
 const prodMd = require("../models/product");
+const newsMd = require("../models/news");
 const helper = require("../helpers/helper");
 
 
@@ -147,5 +148,150 @@ router.delete("/prodMgt/delete", function (req, res) {
         });
     }
 });
+
+
+//news
+router.get("/newsMgt/listnews", function(req, res){
+    const params = req.params;
+    let page = parseInt(req.query.page) || 1;
+    const data = newsMd.getAllNews();
+
+    data.then(function(news){
+        const data = {
+            news: news,
+            error: false
+        }
+        res.render("manager/newsMgt/listnews", {data: data});
+    }).catch(function(err){
+        res.render("manager/newsprodMgt/listnews", {data: {error: "Không thể lấy danh sách tin tức!"}});
+    });
+});
+
+router.post("/newsMgt/listnews/searchnews", (req, res) => {
+    let search = req.body.data;
+    let sql = "select * from news where lower(newsTitle)) like lower('%"+searchnews+"%')";
+
+    res.send(searchnews);
+});
+
+router.get("/newsMgt/listnews/searchnews", function(req, res){
+    res.render("manager/newsMgt/listnews/searchnews", {data:{error: false}});
+});
+
+router.get("/newsMgt/new", function(req, res){
+    res.render("manager/newsMgt/new", {data:{error: false}});
+});
+
+router.post("/newsMgt/new", function(req, res){
+    const params = req.body;
+
+    if(params.newsTitle.trim().length === 0 || params.newsContent.trim().length === 0){
+        const data = {
+            error: "Vui lòng nhập đầy đủ các mục!"
+        };
+        res.render("manager/newsMgt/new", {data: data});
+    }
+
+    const now = new Date();
+    params.createDate = now;
+
+    data = newsMd.addNews(params);
+
+    data.then(function(result){
+        res.redirect("/manager/newsMgt/listnews");
+    }).catch(function(error){
+        const data = {
+            error: "Không thể thêm tin tức mới!"
+        };
+        res.render("/manager/newsMgt/new", {data: data});
+    });
+});
+
+router.get("/newsMgt/detailnews/:newsID", function (req, res) {
+    const params = req.params;
+    const newsID = params.newsID;
+
+    const data = newsMd.getNewsByNewsID(newsID);
+
+    if (data) {
+        data.then(function (arrnews) {
+            const news = arrnews[0];
+            const data = {
+                news: news,
+                error: false
+            };
+            res.render("manager/newsMgt/detailnews", { data: data });
+        }).catch(function (err) {
+            res.render("manager/newsMgt/detailnews", { data: { error: "Không thể lấy dữ liệu tin tức này!" } });
+        });
+    }
+    else {
+        res.render("manager/newsMgt/detailnews", { data: { error: "Không thể lấy dữ liệu tin tức này!" } });
+    }
+});
+
+router.get("/newsMgt/editnews/:newsID", function (req, res) {
+    const params = req.params;
+    const newsID = params.newsID;
+
+    const data = newsMd.getNewsByNewsID(newsID);
+
+    if (data) {
+        data.then(function (arrnews) {
+            const news = arrnews[0];
+            const data = {
+                news: news,
+                error: false
+            };
+            res.render("manager/newsMgt/editnews", { data: data });
+        }).catch(function (err) {
+            res.render("manager/newsMgt/editnews", { data: { error: "Không thể lấy dữ liệu tin tức này!" } });
+        });
+    }
+    else {
+        res.render("manager/newsMgt/editnews", { data: { error: "Không thể lấy dữ liệu tin tức này!" } });
+    }
+});
+
+router.post("/newsMgt/listnews/searchnews", (req, res) => {
+    const search = req.body.data;
+    const sql = "select * from news where lower(newsTitle) like lower('%"+searchnews+"%')";
+    
+    res.send(search);
+});
+
+router.put("/newsMgt/editnews", function (req, res) {
+    const params = req.body;
+    console.log(params);
+    data = newsMd.updateNews(params);
+
+    if (!data) {
+        res.json({ status_code: 500 });
+    }
+    else {
+        data.then(function (result) {
+            res.json({ status_code: 200 });
+        }).catch(function (err) {
+            res.json({ status_code: 500 });
+        });
+    }
+});
+
+router.delete("/newsMgt/delete", function (req, res) {
+    const newsID = req.body.newsID;
+    const data = newsMd.deleteNews(newsID);
+
+    if (!data) {
+        res.json({ status_code: 500 });
+    }
+    else {
+        data.then(function (result) {
+            res.json({ status_code: 200 });
+        }).catch(function () {
+            res.json({ status_code: 500 });
+        });
+    }
+});
+//end news
 
 module.exports = router;

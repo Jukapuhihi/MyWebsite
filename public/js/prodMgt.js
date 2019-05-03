@@ -15,7 +15,7 @@ function product() {
             const baseUrl = "http://localhost:3000";
 
             $.ajax({
-                url: baseUrl + "/admin/prodMgt/editprod",
+                url: baseUrl + "/manager/prodMgt/editprod",
                 type: "PUT",
                 data: params,
                 dataType: "json",
@@ -36,7 +36,7 @@ function product() {
 
                 const baseUrl = "http://localhost:3000";
                 $.ajax({
-                    url: baseUrl + "/admin/prodMgt/delete",
+                    url: baseUrl + "/manager/prodMgt/delete",
                     type: "DELETE",
                     data: { productID: productID },
                     dataType: "json",
@@ -68,7 +68,7 @@ $(document).on("keyup","#searchprod", function() {
     $.ajax({
         async: false,
         type: "POST",
-        url: baseUrl + "/admin/prodMgt/listprod/searchprod",
+        url: baseUrl + "/manager/prodMgt/listprod/searchprod",
         data: data,
         cache: false,
         success: function(res){
