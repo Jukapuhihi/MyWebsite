@@ -3,6 +3,7 @@
 
 <head>
     <%- include ../layout/head %>
+    <link rel="stylesheet" type="text/css" href="../../static/css/limitdata.css">
     <title>Quản lý sản phẩm</title>
 </head>
 
@@ -87,7 +88,7 @@
                                             <td> <%= data.product[i].productBrand%> </td>
                                             <td> <%= data.product[i].price%> </td>
                                             <td> <%= data.product[i].createDate%> </td>
-                                            <td> <%= data.product[i].productDescribe%> </td>
+                                            <td> <p class="limitdata"><%= data.product[i].productDescribe%></p> </td>
                                             <td> <%= data.product[i].productImg%> </td>
                                             <td style="display: flex; justify-content: space-around;">
                                                 <a href="detailprod/<%= data.product[i].productID%>"

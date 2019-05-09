@@ -1,0 +1,7 @@
+.limitdata {
+    white-space: wrap;
+    overflow: hidden;
+    height: 100px;
+    width: 100%;
+    text-overflow: clip;
+}

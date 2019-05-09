@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <%- include layout/head %>
+
+    <title>Chăm sóc da toàn thân</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/home.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/category/bodyskin.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/ctdetailprod.css">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav nav--transparent">
+            <div class="container">
+
+                <div class="nav__logo">
+                    <a href="#">
+                        <img class="logo" src="https://image.flaticon.com/icons/png/512/997/997507.png" alt="logo">
+                        <img class="logo-alt" src="https://image.flaticon.com/icons/png/512/997/997507.png" alt="logo">
+                        <span class="header__pagename">Juka Cosmetic</span>
+                    </a>
+                </div>
+
+
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link">Trang chủ</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#news" class="nav__link">Tin tức</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#account" class="nav__link">Tài khoản</a>
+                    </li>
+                </ul>
+
+
+                <button type="button" id="btn-cart" class="btn btn-link">
+                    <i class="fas fa-shopping-cart"></i>
+                </button>
+
+                <div class="nav__toggler">
+                    <span class="nav__toggler-icon"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <button class="go-to-top ct-btn ct-btn--primary">
+        <i class="fas fa-angle-up"></i>
+    </button>
+
+    <div class="col-lg-12">
+        <input class="productID" type="hidden" name="productID" value="<% if(data && data.product) {%> <%= data.product.productID %> <%}%>">
+        <% if (data && data.error){%>
+        <div id=" detailProd-alert" class="alert alert-danger col-sm-12">
+        <%= data.error %>
+    </div>
+    <%}%>
+    </div>
+
+    <div class="main">
+        <div class="content">
+            <!-- <h1 class="content__header">Danh mục sản phẩm > Thời trang > Đầm dáng suông pha ren </h1> -->
+            <div class="content__img">
+                <img src="http://myphamxachtayduc.vn/wp-content/uploads/2016/08/bebe-young-care-intensivpflege-gesichtscreme-2.jpg"
+                    alt="Đầm dáng suông pha ren">
+            </div>
+            <div class="content__detail">
+                <h2 class="product__name"><% if (data && data.product) {%><%= data.product.productName%><%}%></h2>
+                <p class="product__review">Chưa có đánh giá</p>
+                <p class="product__price"><% if (data && data.product) {%><%= data.product.price%><%}%>đ</p>
+                <p class="product__status">Trạng thái: <span>Còn hàng</span></p>
+                <form action="" method="" class="content__form">
+                    <!-- Màu sắc:
+                    <br><input type="radio" name="color"> Hồng
+                    <input type="radio" name="color"> Trắng
+                    <input type="radio" name="color"> Đen
+                    <br> -->
+                    <button type="button" class="product__buy btn btn-danger"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Thêm vào giỏ</button>
+                </form>
+            </div>
+            <div class="content__description">
+                <h2>Mô tả sản phẩm</h2>
+                <p><% if (data && data.product) {%><%= data.product.productDescribe%><%}%></p>
+            </div>
+        </div>
+        <div class="banner">
+            <p class="banner__header">Sản phẩm tương tự</p>
+            <div class="similar__product similar-product">
+                <div class="similar__product-img">
+                    <img src="http://resources2.nhommua.com/FTPProduct/127000/127799/kem-duong-trang-da-pond%27s-flawless-white%20(4).jpg" alt="Sản phẩm tương tự">
+                </div>
+                <div class="similar__product-detail">
+                    <p class="similar__product-name">Xkskdk</p>
+                    <p class="similar__product-price">234đ</p>
+                </div>
+            </div>
+            <div class="similar__product">
+                <div class="similar__product-img">
+                    <img src="https://beautygarden.vn/Upload/Files/kem-duong-da-innisfree_green_tea_seed_cream-beauty-garden-1.jpg" alt="Sản phẩm tương tự">
+                </div>
+                <div class="similar__product-detail">
+                    <p class="similar__product-name">Xkskdk</p>
+                    <p class="similar__product-price">234đ</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include layout/footer %>
+    <script src="../static/libs/owlcarousel/owl.carousel.js"></script>
+    <script src="../static/libs/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../static/js/home.js"></script>
+    <script src="../static/js/category.js"></script>
+</body>
+
+</html>

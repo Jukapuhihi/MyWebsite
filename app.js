@@ -15,7 +15,7 @@ app.use(session({
   secret: config.get("secretKey"),
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: true }
+  cookie: { secure: false }
 }));
 
 app.set("views", __dirname + "/apps/views");

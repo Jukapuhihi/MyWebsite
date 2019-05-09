@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <%- include layout/head %>
+
+    <title>Chăm sóc da toàn thân</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/home.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/category/bodyskin.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/ctdetailprod.css">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav nav--transparent">
+            <div class="container">
+
+                <div class="nav__logo">
+                    <a href="#">
+                        <img class="logo" src="https://image.flaticon.com/icons/png/512/997/997507.png" alt="logo">
+                        <img class="logo-alt" src="https://image.flaticon.com/icons/png/512/997/997507.png" alt="logo">
+                        <span class="header__pagename">Juka Cosmetic</span>
+                    </a>
+                </div>
+
+
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link">Trang chủ</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#news" class="nav__link">Tin tức</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#account" class="nav__link">Tài khoản</a>
+                    </li>
+                </ul>
+
+
+                <button type="button" id="btn-cart" class="btn btn-link">
+                    <i class="fas fa-shopping-cart"></i>
+                </button>
+
+                <div class="nav__toggler">
+                    <span class="nav__toggler-icon"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <button class="go-to-top ct-btn ct-btn--primary">
+        <i class="fas fa-angle-up"></i>
+    </button>
+
+
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <h3 class="table-caption">Giỏ hàng của bạn</h3>
+                <thead>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th class="text-center">Giá</th>
+                        <th class="text-center">Tổng</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-sm-8 col-md-6">
+                            <div class="media">
+                                <a class="thumbnail pull-left" href="#"> <img class="media-object"
+                                        src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png"
+                                        style="width: 72px; height: 72px;"> </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><a href="#">Product name</a></h4>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                            <input type="email" class="form-control" id="exampleInputEmail1" value="3">
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>$4.87</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
+                        <td class="col-sm-1 col-md-1">
+                            <button type="button" class="btn btn-danger"><span
+                                    class="glyphicon glyphicon-remove"></span> Remove </button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td> &nbsp; </td>
+                        <td> &nbsp; </td>
+                        <td> &nbsp; </td>
+                        <td>
+                            <h5>Tổng giá</h5>
+                        </td>
+                        <td class="text-right">
+                            <h5><strong>$24.59</strong></h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> &nbsp; </td>
+                        <td> &nbsp; </td>
+                        <td> &nbsp; </td>
+                        <td>
+                            <h5>Chi phí vận chuyển</h5>
+                        </td>
+                        <td class="text-right">
+                            <h5><strong>25000đ</strong></h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> &nbsp; </td>
+                        <td> &nbsp; </td>
+                        <td> &nbsp; </td>
+                        <td>
+                            <h3>Tổng chi phí</h3>
+                        </td>
+                        <td class="text-right">
+                            <h3><strong>$31.53</strong></h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> &nbsp; </td>
+                        <td> &nbsp; </td>
+                        <td> &nbsp; </td>
+                        <td>
+                            <button type="button" class="btn btn-success">Checkout<span
+                                    class="glyphicon glyphicon-play"></span></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <%- include layout/footer %>
+    <script src="../static/libs/owlcarousel/owl.carousel.js"></script>
+    <script src="../static/libs/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../static/js/home.js"></script>
+    <script src="../static/js/category.js"></script>
+</body>
+
+</html>

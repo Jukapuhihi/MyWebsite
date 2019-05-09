@@ -3,6 +3,7 @@
 
 <head>
     <%- include ../layout/head %>
+    <link rel="stylesheet" type="text/css" href="../../static/css/limitdata.css">
     <title>Quản lý tin tức</title>
 </head>
 
@@ -78,7 +79,7 @@
                                         <tr>
                                             <td> <%= data.news[i].newsID%> </td>
                                             <td> <%= data.news[i].newsTitle%> </td>
-                                            <td> <%= data.news[i].newsContent%> </td>
+                                            <td> <p class="limitdata"><%= data.news[i].newsContent%></p> </td>
                                             <td> <%= data.news[i].createDate%> </td>
                                             <td style="display: flex; justify-content: space-around;">
                                                 <a href="detailnews/<%= data.news[i].newsID%>"

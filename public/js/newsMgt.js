@@ -3,8 +3,8 @@ function news() {
         $(".newsedit").click(function (e) {
             let params = {
                 newsID: $(".newsID").val(),
-                newsTitle: $(".newsTitle").val(),
-                newsContent: $(".newsContent").val(),
+                newsTitle: $(".newsTitle").val().trim(),
+                newsContent: $(".newsContent").val().trim(),
                 createDate: $(".createDate").val()
             };
 

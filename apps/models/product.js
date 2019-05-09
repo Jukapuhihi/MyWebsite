@@ -16,6 +16,19 @@ function getAllProduct() {
     return defer.promise;
 }
 
+function getProductBodyskin() {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryID=1', function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
 // function getAllProduct(page) {
 //     if (page) {
 //         const defer = q.defer();
@@ -101,5 +114,6 @@ module.exports = {
     addProduct: addProduct,
     getProductByProductID: getProductByProductID,
     updateProd: updateProd,
-    deleteProduct: deleteProduct
+    deleteProduct: deleteProduct,
+    getProductBodyskin: getProductBodyskin
 }

@@ -24,41 +24,36 @@
                             <input class="productID" type="hidden" name="productID" value="<% if(data && data.product) {%> <%= data.product.productID %> <%}%>">
 
                             <% if (data && data.error){%>
-                            <div id="editProd-alert" class="alert alert-danger col-sm-12">
-                                <%= data.error %>
-                            </div>
-                            <%}%>
+                            <div id=" editProd-alert" class="alert alert-danger col-sm-12">
+                            <%= data.error %>
+                        </div>
+                        <%}%>
                                 
                             <form role="form" method="" action="">
                                 <div class="form-group">
                                     <label for="productName">Tên sản phẩm</label>
-                                    <input class="form-control productName" name="productName" placeholder="Nhập tên sản phẩm" value="<% if (data && data.product) {%>
-                                    <%= data.product.productName%><%}%>">
+                                    <input class="form-control productName" name="productName" placeholder="Nhập tên sản phẩm" value="<% if (data && data.product) {%><%= data.product.productName%><%}%>">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="productBrand">Thương hiệu</label>
-                                    <input class="form-control productBrand" name="productBrand" placeholder="Nhập tên thương hiệu" value="<% if (data && data.product) {%>
-                                    <%= data.product.productBrand%><%}%>" >
+                                    <input class="form-control productBrand" name="productBrand" placeholder="Nhập tên thương hiệu" value="<% if (data && data.product) {%><%= data.product.productBrand%><%}%>" >
                                 </div>
 
                                 <div class="form-group">
                                     <label for="price">Giá</label>
-                                    <input class="form-control price" name="price" placeholder="Nhập giá sản phẩm" value="<% if (data && data.product) {%>
-                                    <%= data.product.price%><%}%>">
+                                    <input class="form-control price" name="price" placeholder="Nhập giá sản phẩm" value="<% if (data && data.product) {%><%= data.product.price%><%}%>">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="productDescribe">Mô tả sản phẩm</label>
-                                    <textarea class="form-control productDescribe" name="productDescribe"
-                                        placeholder="Nhập mô tả sản phẩm vào đây!" value="<% if (data && data.product) {%>
-                                        <%= data.product.productDescribe%><%}%>" ></textarea>
+                                    <textarea class="form-control productDescribe" name="productDescribe" rows="10"
+                                        placeholder="Nhập mô tả sản phẩm vào đây!" value=""><% if (data && data.product) {%><%= data.product.productDescribe%><%}%></textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="productImg">Tải ảnh sản phẩm lên</label>
-                                    <input class="btn btn-primary productImg" type="file" name="productImg" value="<% if (data && data.product) {%>
-                                    <%= data.product.productImg%><%}%>" >
+                                    <input class="btn btn-primary productImg" type="file" name="productImg" value="<% if (data && data.product) {%><%= data.product.productImg%><%}%>" >
                                 </div>
 
                                 <div class="form-group">

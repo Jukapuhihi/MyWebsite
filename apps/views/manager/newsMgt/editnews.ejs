@@ -24,23 +24,21 @@
                             <input class="newsID" type="hidden" name="newsID" value="<% if(data && data.news) {%> <%= data.news.newsID %> <%}%>">
 
                             <% if (data && data.error){%>
-                            <div id="editNews-alert" class="alert alert-danger col-sm-12">
-                                <%= data.error %>
-                            </div>
-                            <%}%>
+                            <div id=" editNews-alert" class="alert alert-danger col-sm-12">
+                            <%= data.error %>
+                        </div>
+                        <%}%>
                                 
                             <form role="form" method="" action="">
                                 <div class="form-group">
                                     <label for="newsTitle">Tiêu đề tin tức</label>
-                                    <input class="form-control newsTitle" name="newsTitle" placeholder="Nhập tiêu đề tin tức" value="<% if (data && data.news) {%>
-                                    <%= data.news.newsTitle%><%}%>">
+                                    <input class="form-control newsTitle" name="newsTitle" placeholder="Nhập tiêu đề tin tức" value="<% if (data && data.news) {%><%= data.news.newsTitle%><%}%>">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="newsContent">Nội dung tin tức</label>
-                                    <textarea class="form-control newsContent" name="newsContent"
-                                        placeholder="Nhập nội dung tin tức vào đây!" value="<% if (data && data.news) {%>
-                                        <%= data.news.newsContent%><%}%>" ></textarea>
+                                    <textarea class="form-control newsContent" name="newsContent" rows="10"
+                                        placeholder="Nhập nội dung tin tức vào đây!" value="" ><%if(data && data.news){%><%= data.news.newsContent%><%}%></textarea>
                                 </div>
 
                                 <div class="form-group">

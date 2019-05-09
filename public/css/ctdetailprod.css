@@ -1,0 +1,140 @@
+@import url("../reset.css");
+
+.header {
+    background-image: none;
+    min-height: 6.8rem;
+    background-color: white;
+    position: relative;
+}
+
+.header::before {
+    height: 6.8rem;
+    background-color: #031cfa57;
+    position: fixed;
+}
+
+.main {
+    font-size: 0;
+    margin: 3rem 5rem;
+    display: flex;
+}
+.content {
+    width: 75%;
+    font-size: 0;
+    margin-top: 20px;
+}
+.content__header {
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 15px;
+}
+.content__img {
+    display: inline-block;
+    font-size: 16px;
+    padding: 10px;
+    width: 50%;
+    border: 1px solid var(--border);
+}
+.content__img img {
+    width: 70px;
+    height: 80px;
+}
+.content__img img:first-child {
+    width: 90%;
+    height: auto;
+    padding: 5px;
+}
+.content__img img:nth-child(2) {
+    width: 70px;
+    height: 80px;
+    margin-left: 5px;
+    border: 1px solid red;
+}
+
+.content__detail {
+    display: inline-block;
+    padding-left: 2rem;
+    font-size: 16px;
+    vertical-align: top;
+    width: 50%;
+}
+.product__name {
+    font-size: 25px;
+    margin: 20px 0 10px 10px;
+}
+.product__review {
+    color: gray;
+    margin: 0 0 10px 20px;
+}
+.product__price {
+    font-size: 25px;
+    color: #fa5407;
+    line-height: 30px;
+    padding-left: 20px;
+    font-weight: bold;
+}
+.product__status {
+    padding: 10px;
+}
+.product__status span {
+    color: green;
+}
+.content__detail form {
+    padding: 5px 0 5px 10px;
+}
+.content__detail form input {
+    margin: 10px 0 0 20px;
+}
+.product__buy {
+    margin: 30px 0 0 95px;
+    color: white;
+    font-size: 20px;
+    line-height: 25px;
+    border: none;
+    outline: none;
+    padding: 10px;
+}
+.content__description {
+    font-size: 16px;
+    margin-top: 5rem;
+}
+.content__description h2 {
+    font-size: 25px;
+    margin: 20px 0 10px 10px;
+}
+.content__description p {
+    padding-left: 20px;
+}
+
+.banner {
+    display: inline-block;
+    font-size: 16px;
+    width: 25%;
+    vertical-align: top;
+    padding: 5px;
+}
+.banner__header {
+    font-size: 18px;
+    line-height: 30px;
+    padding: 10px 0px;
+}
+
+.similar__product {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.similar__product-img {
+    width: 100%;
+    height: 100%;
+}
+.similar__product-img img{
+    object-fit: cover;
+}
+.similar__product-detail {
+    width: 100%;
+    padding-left: 2rem;
+}
+.similar__product-price {
+    color: var(--price);
+}

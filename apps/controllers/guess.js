@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const userMd = require("../models/user");
+const prodMd = require("../models/product");
 const helper = require("../helpers/helper");
 
 router.get("/", function (req, res) {
@@ -9,7 +10,44 @@ router.get("/", function (req, res) {
 });
 
 router.get("/category/bodyskin", function(req, res){
-    res.render("category/bodyskin", {data:{error: false}});
+    const params = req.params;
+    let page = parseInt(req.query.page) || 1;
+    const data = prodMd.getProductBodyskin();
+
+    data.then(function(product){
+        const data = {
+            product: product,
+            error: false
+        }
+        res.render("category/bodyskin", {data: data});
+    }).catch(function(err){
+        res.render("category/bodyskin", {data: {error: "Không thể lấy danh sách sản phẩm!"}});
+    });
+});
+
+router.get("/ctdetailprod/:productID", function (req, res) {
+    const params = req.params;
+    const productID = params.productID;
+
+    const data = prodMd.getProductByProductID(productID);
+    if (data) {
+        data.then(function (products) {
+            const product = products[0];
+            const data = {
+                product: product,
+                error: false
+            };
+            res.render("ctdetailprod", { data: data });
+        }).catch(function (err) {
+            res.render("ctdetailprod", { data: { error: "Không thể lấy dữ liệu sản phẩm này!"} });
+        });
+    } else {
+        res.render("ctdetailprod", { data: { error:"Không thể lấy dữ liệu sản phẩm này!"}});
+    }
+});
+
+router.get("/cart", function (req,res) {
+    res.render("cart", { data : {}});
 });
 
 router.get("/signup", function (req, res) {
@@ -105,6 +143,5 @@ router.post("/signin", function (req, res) {
         }
     }
 });
-
 
 module.exports = router;

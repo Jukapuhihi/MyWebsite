@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --primary: #266bf5;
+    --text: #868f9b;
+    --dark: #10161a;
+    --border: #eee;
+    --gray: #fafafa;
+    --itembg: #266bf54d;
+    --star: #ffce3d;
+    --price: #ee4d2d;
+}
+html {
+    font-size: 62.5%; /* 1rem = 10px */
+}
+body {
+    font-family: "Varela Round", sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+a, a:hover, a:visited, a:active, a:link {
+    text-decoration: none;
+}
+img {
+    max-width: 100%;
+}

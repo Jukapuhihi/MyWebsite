@@ -7,62 +7,75 @@ const prodMd = require("../models/product");
 const helper = require("../helpers/helper");
 
 router.get("/", function (req, res) {
-    // res.json({"message": "This is Admin Page"});
-    const data = userMd.getAllUsers();
-    data.then(function (user) {
-        const data = {
-            user: user,
-            error: false
-        };
-        res.render("admin/dashboard", { data: data });
-    }).catch(function (err) {
-        res.render("admin/dashboard", { data: { error: "Không thể lấy danh sách người dùng!" } });
-    });
+    if (req.session.admin) {
+        // res.json({"message": "This is Admin Page"});
+        const data = userMd.getAllUsers();
+        data.then(function (user) {
+            const data = {
+                user: user,
+                error: false
+            };
+            res.render("admin/dashboard", { data: data });
+        }).catch(function (err) {
+            res.render("admin/dashboard", { data: { error: "Không thể lấy danh sách người dùng!" } });
+        });
+    } else {
+        res.redirect("/admin/signinadmin");
+    }
 });
 
 router.get("/userMgt/detailuser/:userID", function (req, res) {
-    const params = req.params;
-    const userID = params.userID;
+    if (req.session.admin) {
+        const params = req.params;
+        const userID = params.userID;
 
-    const data = userMd.getUserByUserID(userID);
+        const data = userMd.getUserByUserID(userID);
 
-    if (data) {
-        data.then(function (users) {
-            const user = users[0];
-            const data = {
-                user: user,
-                error: false
-            };
-            res.render("admin/userMgt/detailuser", { data: data });
-        }).catch(function (err) {
+        if (data) {
+            data.then(function (users) {
+                const user = users[0];
+                const data = {
+                    user: user,
+                    error: false
+                };
+                res.render("admin/userMgt/detailuser", { data: data });
+            }).catch(function (err) {
+                res.render("admin/userMgt/detailuser", { data: { error: "Không thể lấy dữ liệu của người dùng này!" } });
+            });
+        }
+        else {
             res.render("admin/userMgt/detailuser", { data: { error: "Không thể lấy dữ liệu của người dùng này!" } });
-        });
+        }
+    } else {
+        res.redirect("/admin/signinadmin");
     }
-    else {
-        res.render("admin/userMgt/detailuser", { data: { error: "Không thể lấy dữ liệu của người dùng này!" } });
-    }
+
 });
 
 router.get("/userMgt/edituser/:userID", function (req, res) {
-    const params = req.params;
-    const userID = params.userID;
+    if (req.session.admin) {
+        const params = req.params;
+        const userID = params.userID;
 
-    const data = userMd.getUserByUserID(userID);
+        const data = userMd.getUserByUserID(userID);
 
-    if (data) {
-        data.then(function (users) {
-            const user = users[0];
-            const data = {
-                user: user,
-                error: false
-            };
-            res.render("admin/userMgt/edituser", { data: data });
-        }).catch(function (err) {
+        if (data) {
+            data.then(function (users) {
+                const user = users[0];
+                const data = {
+                    user: user,
+                    error: false
+                };
+                res.render("admin/userMgt/edituser", { data: data });
+            }).catch(function (err) {
+                res.render("admin/userMgt/edituser", { data: { error: "Không thể lấy dữ liệu của người dùng này!" } });
+            });
+        }
+        else {
             res.render("admin/userMgt/edituser", { data: { error: "Không thể lấy dữ liệu của người dùng này!" } });
-        });
-    }
-    else {
-        res.render("admin/userMgt/edituser", { data: { error: "Không thể lấy dữ liệu của người dùng này!" } });
+        }
+    } else {
+        res.redirect("/admin/signinadmin");
     }
 });
 
@@ -183,7 +196,7 @@ router.post("/signinadmin", function (req, res) {
     }
 });
 
-router.get("/user", function(req,res){
+router.get("/user", function (req, res) {
     res.redirect("/admin");
 });
 
