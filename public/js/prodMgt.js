@@ -21,7 +21,8 @@ function product() {
                 dataType: "json",
                 success: function (res) {
                     if (res && res.status_code == 200) {
-                        location.reload();
+                        // location.reload();
+                        res.render("/manager/prodMgt/listprod");
                     }
                 }
             });

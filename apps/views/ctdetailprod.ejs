@@ -13,9 +13,44 @@
     <link rel="stylesheet" type="text/css" href="../../static/css/home.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/category/bodyskin.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/ctdetailprod.css">
+
+
+    <script>
+        var observe;
+        if (window.attachEvent) {
+            observe = function (element, event, handler) {
+                element.attachEvent('on' + event, handler);
+            };
+        }
+        else {
+            observe = function (element, event, handler) {
+                element.addEventListener(event, handler, false);
+            };
+        }
+        function init() {
+            var text = document.getElementById('text');
+            function resize() {
+                text.style.height = 'auto';
+                text.style.height = text.scrollHeight + 'px';
+            }
+            /* 0-timeout to get the already changed text */
+            function delayedResize() {
+                window.setTimeout(resize, 0);
+            }
+            observe(text, 'change', resize);
+            observe(text, 'cut', delayedResize);
+            observe(text, 'paste', delayedResize);
+            observe(text, 'drop', delayedResize);
+            observe(text, 'keydown', delayedResize);
+
+            text.focus();
+            text.select();
+            resize();
+        }
+    </script>
 </head>
 
-<body>
+<body onload="init();">
     <header class="header">
         <nav class="nav nav--transparent">
             <div class="container">
@@ -89,7 +124,12 @@
             </div>
             <div class="content__description">
                 <h2>Mô tả sản phẩm</h2>
-                <p><% if (data && data.product) {%><%= data.product.productDescribe%><%}%></p>
+                <!-- <p><% if (data && data.product) {%><%= data.product.productDescribe%><%}%></p> -->
+                <label for="productDescribe"></label>
+                <textarea class="form-control productDescribe" id="text" name="productDescribe" 
+                style="border: 1 solid rgb(209, 207, 207); overflow: hidden; padding: 1rem; outline: none; background-color: rgb(255, 255, 255);"
+                     placeholder="Nhập mô tả sản phẩm vào đây!" value=""
+                    disabled><% if (data && data.product) {%><%= data.product.productDescribe%><%}%></textarea>
             </div>
         </div>
         <div class="banner">
@@ -120,6 +160,7 @@
     <script src="../static/libs/owlcarousel/owl.carousel.min.js"></script>
     <script src="../static/js/home.js"></script>
     <script src="../static/js/category.js"></script>
+    <script src="../static/js/ctdetailprod.js"></script>
 </body>
 
 </html>

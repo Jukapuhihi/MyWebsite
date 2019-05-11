@@ -21,7 +21,8 @@ function user() {
                 dataType: "json",
                 success: function (res) {
                     if (res && res.status_code == 200) {
-                        location.reload();
+                        // location.reload();
+                        res.redirect("/admin");
                     }
                 }
             });

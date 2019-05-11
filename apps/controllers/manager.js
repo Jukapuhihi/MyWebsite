@@ -249,7 +249,6 @@ router.get("/newsMgt/detailnews/:newsID", function (req, res) {
         if (data) {
             data.then(function (arrnews) {
                 const news = arrnews[0];
-                // const news = news1.map(el => el.trim() );
                 const data = {
                     news: news,
                     error: false
@@ -277,7 +276,6 @@ router.get("/newsMgt/editnews/:newsID", function (req, res) {
         if (data) {
             data.then(function (arrnews) {
                 const news = arrnews[0];
-                // const news = news1.map(el => el.trim() );
                 const data = {
                     news: news,
                     error: false

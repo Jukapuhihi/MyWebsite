@@ -1,0 +1,12 @@
+.header {
+    transition: 2s;
+    min-height: 5rem;
+}
+.header__content {
+    margin: 10rem 0;
+}
+.header__para, .header__title {
+    transition: 2s;
+    display: none;
+}
+
