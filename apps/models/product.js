@@ -18,7 +18,124 @@ function getAllProduct() {
 
 function getProductBodyskin() {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM product WHERE categoryID=1', function (err, product) {
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Chăm sóc da toàn thân"', function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
+function getProductFaceskin() {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Chăm sóc da mặt"', function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
+function getProductBeautyservice() {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Dịch vụ làm đẹp"', function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
+function getProductFormen() {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Dành cho quý ông"', function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
+function getProductHairnail() {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Chăm sóc tóc và móng"', function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
+function getProductMakeup() {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Trang điểm"', function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
+function getProductMakeupcourse() {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Khóa học trang điểm"', function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
+function getProductMakeupservice() {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Dịch vụ trang điểm"', function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
+function getProductMakeuptool() {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Dụng cụ trang điểm"', function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
+function getProductPerfume() {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Nước hoa"', function (err, product) {
         if (err) {
             defer.reject(err);
         }
@@ -80,7 +197,7 @@ function getProductByProductID(productID) {
 function updateProd(params) {
     if (params) {
         const defer = q.defer();
-        const query = conn.query('UPDATE product SET productName=?, productBrand=?, price=?, productDescribe=?, productImg=?  WHERE productID=?', [params.productName, params.productBrand, params.price, params.productDescribe, params.productImg, params.productID], function (err, result) {
+        const query = conn.query('UPDATE product SET productName=?, productBrand=?, categoryName=?, price=?, productDescribe=?, productImg=?  WHERE productID=?', [params.productName, params.productBrand, params.categoryName, params.price, params.productDescribe, params.productImg, params.productID], function (err, result) {
             if (err) {
                 defer.reject(err);
             }
@@ -115,5 +232,14 @@ module.exports = {
     getProductByProductID: getProductByProductID,
     updateProd: updateProd,
     deleteProduct: deleteProduct,
-    getProductBodyskin: getProductBodyskin
+    getProductBodyskin: getProductBodyskin,
+    getProductBeautyservice: getProductBeautyservice,
+    getProductFaceskin: getProductFaceskin,
+    getProductFormen: getProductFormen,
+    getProductHairnail: getProductHairnail,
+    getProductMakeup: getProductMakeup,
+    getProductMakeupcourse: getProductMakeupcourse,
+    getProductMakeupservice: getProductMakeupservice,
+    getProductMakeuptool: getProductMakeuptool,
+    getProductPerfume: getProductPerfume
 }

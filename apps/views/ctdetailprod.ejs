@@ -101,25 +101,36 @@
     <%}%>
     </div>
 
+    <h5 style="margin: 2rem 0 0 2rem;"><% if (data && data.product) {%><%= data.product.categoryName%><%}%> > <% if (data && data.product) {%><%= data.product.productName%><%}%></h5>
     <div class="main">
+        
         <div class="content">
-            <!-- <h1 class="content__header">Danh mục sản phẩm > Thời trang > Đầm dáng suông pha ren </h1> -->
+            
             <div class="content__img">
                 <img src="http://myphamxachtayduc.vn/wp-content/uploads/2016/08/bebe-young-care-intensivpflege-gesichtscreme-2.jpg"
-                    alt="Đầm dáng suông pha ren">
+                    alt="">
             </div>
-            <div class="content__detail">
-                <h2 class="product__name"><% if (data && data.product) {%><%= data.product.productName%><%}%></h2>
+            <div class="content__detail" id="prod<% if (data && data.product) {%><%= data.product.productID%><%}%>">
+                <h2 class="product__name" id="productName"><% if (data && data.product) {%><%= data.product.productName%><%}%></h2>
                 <p class="product__review">Chưa có đánh giá</p>
-                <p class="product__price"><% if (data && data.product) {%><%= data.product.price%><%}%>đ</p>
-                <p class="product__status">Trạng thái: <span>Còn hàng</span></p>
+                <p class="product__price" id="prodPrice"><% if (data && data.product) {%><%= data.product.price%><%}%></p>
+                <p class="product__status">Trạng thái: 
+                    <% if (data && data.product && data.product.quantity > 0) {%>
+                    <span>Còn hàng</span></p>
+                    <%} else {%>
+                    <span style="color: red;">Hết hàng</span>
+                    <%}%>
                 <form action="" method="" class="content__form">
+                    <% if (data && data.product && data.product.quantity > 0) {%>
                     <!-- Màu sắc:
                     <br><input type="radio" name="color"> Hồng
                     <input type="radio" name="color"> Trắng
                     <input type="radio" name="color"> Đen
                     <br> -->
-                    <button type="button" class="product__buy btn btn-danger"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Thêm vào giỏ</button>
+                    <button type="button" productID="<% if (data && data.product) {%><%= data.product.productID%><%}%>" class="product__buy btn btn-danger addtocart"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Thêm vào giỏ</button>
+                    <%} else {%>
+                    <button type="button" class="product__buy btn btn-danger" disabled><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Thêm vào giỏ</button>
+                    <%}%>
                 </form>
             </div>
             <div class="content__description">
@@ -131,12 +142,21 @@
                      placeholder="Nhập mô tả sản phẩm vào đây!" value=""
                     disabled><% if (data && data.product) {%><%= data.product.productDescribe%><%}%></textarea>
             </div>
+
+            <table>
+                <thead>
+
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
         </div>
         <div class="banner">
             <p class="banner__header">Sản phẩm tương tự</p>
             <div class="similar__product similar-product">
                 <div class="similar__product-img">
-                    <img src="http://resources2.nhommua.com/FTPProduct/127000/127799/kem-duong-trang-da-pond%27s-flawless-white%20(4).jpg" alt="Sản phẩm tương tự">
+                    <img src="https://img.sosanhgia.com/images/200x0/9fc2928c00984966ab3da654f3a40d8f/kem-duong-da-innisfree-the-green-tea-seed-cream.jpeg" alt="Sản phẩm tương tự">
                 </div>
                 <div class="similar__product-detail">
                     <p class="similar__product-name">Xkskdk</p>
@@ -145,7 +165,7 @@
             </div>
             <div class="similar__product">
                 <div class="similar__product-img">
-                    <img src="https://beautygarden.vn/Upload/Files/kem-duong-da-innisfree_green_tea_seed_cream-beauty-garden-1.jpg" alt="Sản phẩm tương tự">
+                    <img src="https://img.sosanhgia.com/images/200x0/9fc2928c00984966ab3da654f3a40d8f/kem-duong-da-innisfree-the-green-tea-seed-cream.jpeg" alt="Sản phẩm tương tự">
                 </div>
                 <div class="similar__product-detail">
                     <p class="similar__product-name">Xkskdk</p>
@@ -156,11 +176,11 @@
     </div>
 
     <%- include layout/footer %>
-    <script src="../static/libs/owlcarousel/owl.carousel.js"></script>
-    <script src="../static/libs/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../static/js/home.js"></script>
-    <script src="../static/js/category.js"></script>
-    <script src="../static/js/ctdetailprod.js"></script>
+    <script type="text/javascript" src="/static/libs/owlcarousel/owl.carousel.js"></script>
+    <script type="text/javascript" src="/static/libs/owlcarousel/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/static/js/home.js"></script>
+    <script type="text/javascript" src="/static/js/category.js"></script>
+    <script type="text/javascript" src="/static/js/ctdetailprod.js"></script>
 </body>
 
 </html>

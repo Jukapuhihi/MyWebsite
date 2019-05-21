@@ -27,20 +27,80 @@
                             </div>
                             <%}%>
                                 
-                            <form role="form" method="POST" action="/manager/prodMgt/new">
+                            <form role="form" method="POST" action="/manager/prodMgt/new" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label>Tên sản phẩm</label>
                                     <input class="form-control" name="productName" placeholder="Nhập tên sản phẩm">
                                 </div>
 
                                 <div class="form-group">
+                                    <label>Thể loại</label>
+                                    <select class="form-control" name="categoryName" id="categoryName">
+                                        <option value="Chăm sóc da toàn thân">Chăm sóc da toàn thân</option>
+                                        <option value="Chăm sóc da mặt">Chăm sóc da mặt</option>
+                                        <option value="Trang điểm">Trang điểm</option>
+                                        <option value="Dụng cụ trang điểm">Dụng cụ trang điểm</option>
+                                        <option value="Nước hoa">Nước hoa</option>
+                                        <option value="Chăm sóc tóc và móng">Chăm sóc tóc và móng</option>
+                                        <option value="Dịch vụ làm đẹp">Dịch vụ làm đẹp</option>
+                                        <option value="Dịch vụ trang điểm">Dịch vụ trang điểm</option>
+                                        <option value="Khóa học trang điểm">Khóa học trang điểm</option>
+                                        <option value="Dành cho quý ông">Dành cho quý ông</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
                                     <label>Thương hiệu</label>
-                                    <input class="form-control" name="productBrand" placeholder="Nhập tên thương hiệu">
+                                    <select class="form-control" name="productBrand" id="productBrand">
+                                        <option value="Avene">Avene</option>
+                                        <option value="Vichy">Vichy</option>
+                                        <option value="Victoria's Secret">Victoria's Secret</option>
+                                        <option value="La Roche Posay">La Roche Posay</option>
+                                        <option value="Neutrogena">Neutrogena</option>
+                                        <option value="SVR">SVR</option>
+                                        <option value="Rohto">Rohto</option>
+                                        <option value="Naruko">Naruko</option>
+                                        <option value="Givenchy">Givenchy</option>
+                                        <option value="YSL">YSL</option>
+                                        <option value="3CE">3CE</option>
+                                        <option value="Laneige">Laneige</option>
+                                        <option value="Lime">Lime</option>
+                                        <option value="Vacosi">Vacosi</option>
+                                        <option value="BH Cosmetics">BH Cosmetics</option>
+                                        <option value="The face shop">The face shop</option>
+                                        <option value="Tony Moly">Tony Moly</option>
+                                        <option value="Burberry">Burberry</option>
+                                        <option value="LIDL">LIDL</option>
+                                        <option value="Jo Malone">Jo Malone</option>
+                                        <option value="Carolina Herrera New York EDP">Carolina Herrera New York EDP</option>
+                                        <option value="Dior">Dior</option>
+                                        <option value="MiseEn">MiseEn</option>
+                                        <option value="L'OREAL PARIS">L'OREAL PARIS</option>
+                                        <option value="Balea">Balea</option>
+                                        <option value="Innisfree">Innisfree</option>
+                                        <option value="Lucky Trần">Lucky Trần</option>
+                                        <option value="T&T Hair Salon">T&T Hair Salon</option>
+                                        <option value="Viện tóc Oxy">Viện tóc Oxy</option>
+                                        <option value="Sen Spa">Sen Spa</option>
+                                        <option value="Linh Killdy Makeup Store">Linh Killdy Makeup Store</option>
+                                        <option value="Yêu Media">Yêu Media</option>
+                                        <option value="Quách Ánh Makeup Store">Quách Ánh Makeup Store</option>
+                                        <option value="John Kim Wedding">John Kim Wedding</option>
+                                        <option value="Mai Đỗ Make Up">Mai Đỗ Make Up</option>
+                                        <option value="Tina Lê Make Up">Tina Lê Make Up</option>
+                                        <option value="Shiseido">Shiseido</option>
+                                        <option value="Versace">Versace</option>
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Giá</label>
                                     <input class="form-control" name="price" placeholder="Nhập giá sản phẩm">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Số lượng</label>
+                                    <input class="form-control" name="quantity" placeholder="Nhập số lượng sản phẩm">
                                 </div>
 
                                 <div class="form-group">
@@ -73,7 +133,7 @@
             <!-- /.panel -->
         </div>
     </div>
-
+    <script src="../../static/js/optsort.js"></script>
 </body>
 
 </html>

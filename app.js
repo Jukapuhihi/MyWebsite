@@ -2,7 +2,8 @@ const express = require("express");
 const config = require("config");
 const bodyParser = require("body-parser");
 const session = require("express-session");
-
+const busboy = require("then-busboy");
+const fileUpload = require("express-fileupload");
 
 const app = express();
 //body-parser
@@ -17,6 +18,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false }
 }));
+app.use(fileUpload());
 
 app.set("views", __dirname + "/apps/views");
 app.set("view engine", "ejs");

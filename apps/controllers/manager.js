@@ -60,9 +60,32 @@ router.post("/prodMgt/new", function (req, res) {
         res.render("manager/prodMgt/new", { data: data });
     }
 
+    // if (!params.productImg) return res.status(400).send('Không có file nào được tải lên!');
+
+    // var file = params.productImg.uploaded_image;
+    // // var img_name = file.name;
+
+    // if (file.mimetype == "image/jpeg" || file.mimetype == "image/png" || file.mimetype == "image/gif") {
+
+    //     file.mv('public/imgs/' + file.name, function (err) {
+
+    //         if (err)
+    //         return res.status(500).send(err);
+    //         // var sql = "INSERT INTO `users_image`(`first_name`,`last_name`,`mob_no`,`user_name`, `password` ,`image`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "','" + img_name + "')";
+
+    //         // var query = db.query(sql, function (err, result) {
+    //         //     res.redirect('/manager/prodMgt/listprod' + result.insertId);
+    //         // });
+    //     });
+    // } 
+    // // else {
+    // //     message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
+    // //     res.render('/manager/prodMgt/new', { message: message });
+    // // }
+
+
     const now = new Date();
     params.createDate = now;
-
     data = prodMd.addProduct(params);
 
     data.then(function (result) {

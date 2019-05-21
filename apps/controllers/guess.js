@@ -25,6 +25,150 @@ router.get("/category/bodyskin", function(req, res){
     });
 });
 
+router.get("/category/beautyservice", function(req, res){
+    const params = req.params;
+    let page = parseInt(req.query.page) || 1;
+    const data = prodMd.getProductBeautyservice();
+
+    data.then(function(product){
+        const data = {
+            product: product,
+            error: false
+        }
+        res.render("category/beautyservice", {data: data});
+    }).catch(function(err){
+        res.render("category/beautyservice", {data: {error: "Không thể lấy danh sách sản phẩm!"}});
+    });
+});
+
+router.get("/category/faceskin", function(req, res){
+    const params = req.params;
+    let page = parseInt(req.query.page) || 1;
+    const data = prodMd.getProductFaceskin();
+
+    data.then(function(product){
+        const data = {
+            product: product,
+            error: false
+        }
+        res.render("category/faceskin", {data: data});
+    }).catch(function(err){
+        res.render("category/faceskin", {data: {error: "Không thể lấy danh sách sản phẩm!"}});
+    });
+});
+
+router.get("/category/formen", function(req, res){
+    const params = req.params;
+    let page = parseInt(req.query.page) || 1;
+    const data = prodMd.getProductFormen();
+
+    data.then(function(product){
+        const data = {
+            product: product,
+            error: false
+        }
+        res.render("category/formen", {data: data});
+    }).catch(function(err){
+        res.render("category/formen", {data: {error: "Không thể lấy danh sách sản phẩm!"}});
+    });
+});
+
+router.get("/category/hairnail", function(req, res){
+    const params = req.params;
+    let page = parseInt(req.query.page) || 1;
+    const data = prodMd.getProductHairnail();
+
+    data.then(function(product){
+        const data = {
+            product: product,
+            error: false
+        }
+        res.render("category/hairnail", {data: data});
+    }).catch(function(err){
+        res.render("category/hairnail", {data: {error: "Không thể lấy danh sách sản phẩm!"}});
+    });
+});
+
+router.get("/category/makeup", function(req, res){
+    const params = req.params;
+    let page = parseInt(req.query.page) || 1;
+    const data = prodMd.getProductMakeup();
+
+    data.then(function(product){
+        const data = {
+            product: product,
+            error: false
+        }
+        res.render("category/makeup", {data: data});
+    }).catch(function(err){
+        res.render("category/makeup", {data: {error: "Không thể lấy danh sách sản phẩm!"}});
+    });
+});
+
+router.get("/category/makeupcourse", function(req, res){
+    const params = req.params;
+    let page = parseInt(req.query.page) || 1;
+    const data = prodMd.getProductMakeupcourse();
+
+    data.then(function(product){
+        const data = {
+            product: product,
+            error: false
+        }
+        res.render("category/makeupcourse", {data: data});
+    }).catch(function(err){
+        res.render("category/makeupcourse", {data: {error: "Không thể lấy danh sách sản phẩm!"}});
+    });
+});
+
+router.get("/category/makeupservice", function(req, res){
+    const params = req.params;
+    let page = parseInt(req.query.page) || 1;
+    const data = prodMd.getProductMakeupservice();
+
+    data.then(function(product){
+        const data = {
+            product: product,
+            error: false
+        }
+        res.render("category/makeupservice", {data: data});
+    }).catch(function(err){
+        res.render("category/makeupservice", {data: {error: "Không thể lấy danh sách sản phẩm!"}});
+    });
+});
+
+router.get("/category/makeuptool", function(req, res){
+    const params = req.params;
+    let page = parseInt(req.query.page) || 1;
+    const data = prodMd.getProductMakeuptool();
+
+    data.then(function(product){
+        const data = {
+            product: product,
+            error: false
+        }
+        res.render("category/makeuptool", {data: data});
+    }).catch(function(err){
+        res.render("category/makeuptool", {data: {error: "Không thể lấy danh sách sản phẩm!"}});
+    });
+});
+
+router.get("/category/perfume", function(req, res){
+    const params = req.params;
+    let page = parseInt(req.query.page) || 1;
+    const data = prodMd.getProductPerfume();
+
+    data.then(function(product){
+        const data = {
+            product: product,
+            error: false
+        }
+        res.render("category/perfume", {data: data});
+    }).catch(function(err){
+        res.render("category/perfume", {data: {error: "Không thể lấy danh sách sản phẩm!"}});
+    });
+});
+
 router.get("/ctdetailprod/:productID", function (req, res) {
     const params = req.params;
     const productID = params.productID;

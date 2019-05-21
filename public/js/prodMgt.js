@@ -5,7 +5,9 @@ function product() {
                 productID: $(".productID").val(),
                 productName: $(".productName").val(),
                 productBrand: $(".productBrand").val(),
+                categoryName: $(".categoryName").val(),
                 price: $(".price").val(),
+                quantity: $(".quantity").val(),
                 createDate: $(".createDate").val(),
                 productDescribe: $(".productDescribe").val(),
                 productImg: $(".productImg").val()
