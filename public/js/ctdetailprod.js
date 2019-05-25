@@ -34,7 +34,9 @@ $(document).ready(function () {
     function drawCheckout() {
         $('tbody').empty();
         let ckUnit = "";
+        let totalMoney = 0;
         for (let i = 0; i < cart.length; i++) {
+            totalMoney += cart[i].price * cart[i].quantity;
             ckUnit += `
                 <tr>
                     <td>${cart[i].id}</td>
@@ -43,16 +45,23 @@ $(document).ready(function () {
                         <img src="${cart[i].imageUrl}" alt="">
                     </td>
                     <td>
-                        <input type="number" name="" value="${cart[i].price}" min="0" step="1">
+                        <input type="number" name="" value="${cart[i].quantity}" min="0" step="1">
                         <button type="button" class="btn btn-xs btn-danger">
-                        <span class="glyphicon glyphicon-remove></span>
+                        <span class="glyphicon glyphicon-remove>X</span>
                     </td>
                     <td>
-                        <b><span class="unit-price">${cart[i].price}</span>đ</b>
+                        <b><span class="unit-price">${cart[i].price * cart[i].quantity}</span></b>
                     </td>
+
                 </tr>
             `;
         }
+        ckUnit += `
+            <tr style="display: block;">
+                <td colspan="4">Total Price</td>
+                <td>${totalMoney}đ</td>
+            </tr>
+        `;
         $('tbody').append(ckUnit);
     }
 });

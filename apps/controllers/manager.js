@@ -4,6 +4,7 @@ const router = express.Router();
 const userMd = require("../models/user");
 const prodMd = require("../models/product");
 const newsMd = require("../models/news");
+const notiMd = require("../models/notification");
 const helper = require("../helpers/helper");
 
 
@@ -357,5 +358,163 @@ router.delete("/newsMgt/delete", function (req, res) {
     }
 });
 //end news
+
+//notification
+router.get("/notiMgt/listnoti", function (req, res) {
+    if (req.session.user && req.session.user.roleID === 1) {
+        const params = req.params;
+        let page = parseInt(req.query.page) || 1;
+        const data = notiMd.getAllNotification();
+
+        data.then(function (notification) {
+            const data = {
+                notification: notification,
+                error: false
+            }
+            res.render("manager/notiMgt/listnoti", { data: data });
+        }).catch(function (err) {
+            res.render("manager/notiprodMgt/listnoti", { data: { error: "Không thể lấy danh sách thông báo!" } });
+        });
+    } else {
+        res.redirect("/guess/signin");
+    }
+});
+
+router.post("/notiMgt/listnoti/searchnoti", (req, res) => {
+    let search = req.body.data;
+    let sql = "select * from notification where lower(notiTitle)) like lower('%" + searchnoti + "%')";
+
+    res.send(searchnoti);
+});
+
+router.get("/notiMgt/listnoti/searchnoti", function (req, res) {
+    if (req.session.user && req.session.user.roleID === 1) {
+        res.render("manager/notiMgt/listnoti/searchnoti", { data: { error: false } });
+    } else {
+        res.redirect("/guess/signin");
+    }
+});
+
+router.get("/notiMgt/new", function (req, res) {
+    if (req.session.user && req.session.user.roleID === 1) {
+        res.render("manager/notiMgt/new", { data: { error: false } });
+    } else {
+        res.redirect("/guess/signin");
+    }
+});
+
+router.post("/notiMgt/new", function (req, res) {
+    const params = req.body;
+
+    if (params.notiTitle.trim().length === 0 || params.notiContent.trim().length === 0) {
+        const data = {
+            error: "Vui lòng nhập đầy đủ các mục!"
+        };
+        res.render("manager/notiMgt/new", { data: data });
+    }
+
+    const now = new Date();
+    params.createDate = now;
+
+    data = notiMd.addNotification(params);
+
+    data.then(function (result) {
+        res.redirect("/manager/notiMgt/listnoti");
+    }).catch(function (error) {
+        const data = {
+            error: "Không thể thêm thông báo mới!"
+        };
+        res.render("/manager/notiMgt/new", { data: data });
+    });
+});
+
+router.get("/notiMgt/detailnoti/:notiID", function (req, res) {
+    if (req.session.user && req.session.user.roleID === 1) {
+        const params = req.params;
+        const notiID = params.notiID;
+
+        const data = notiMd.getNotificationByNotificationID(notiID);
+
+        if (data) {
+            data.then(function (arrnoti) {
+                const notification = arrnoti[0];
+                const data = {
+                    notification: notification,
+                    error: false
+                };
+                res.render("manager/notiMgt/detailnoti", { data: data });
+            }).catch(function (err) {
+                res.render("manager/notiMgt/detailnoti", { data: { error: "Không thể lấy dữ liệu thông báo này!" } });
+            });
+        }
+        else {
+            res.render("manager/notiMgt/detailnoti", { data: { error: "Không thể lấy dữ liệu thông báo này!" } });
+        }
+    } else {
+        res.redirect("/guess/signin");
+    }
+});
+
+router.get("/notiMgt/editnoti/:notiID", function (req, res) {
+    if (req.session.user && req.session.user.roleID === 1) {
+        const params = req.params;
+        const notiID = params.notiID;
+
+        const data = notiMd.getNotificationByNotificationID(notiID);
+
+        if (data) {
+            data.then(function (arrnoti) {
+                const notification = arrnoti[0];
+                const data = {
+                    notification: notification,
+                    error: false
+                };
+                console.log(data);
+                res.render("manager/notiMgt/editnoti", { data: data });
+            }).catch(function (err) {
+                res.render("manager/notiMgt/editnoti", { data: { error: "Không thể lấy dữ liệu thông báo này!" } });
+            });
+        }
+        else {
+            res.render("manager/notiMgt/editnoti", { data: { error: "Không thể lấy dữ liệu thông báo này!" } });
+        }
+    } else {
+        res.redirect("/guess/signin");
+    }
+});
+
+router.put("/notiMgt/editnoti", function (req, res) {
+    const params = req.body;
+    console.log(params);
+    data = notiMd.updateNotification(params);
+
+    if (!data) {
+        res.json({ status_code: 500 });
+    }
+    else {
+        data.then(function (result) {
+            res.json({ status_code: 200 });
+        }).catch(function (err) {
+            res.json({ status_code: 500 });
+        });
+    }
+});
+
+router.delete("/notiMgt/delete", function (req, res) {
+    const notiID = req.body.notiID;
+    const data = notiMd.deleteNotification(notiID);
+
+    if (!data) {
+        res.json({ status_code: 500 });
+    }
+    else {
+        data.then(function (result) {
+            res.json({ status_code: 200 });
+        }).catch(function () {
+            res.json({ status_code: 500 });
+        });
+    }
+});
+//end notification
 
 module.exports = router;

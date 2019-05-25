@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ../layout/head %>
+    <!-- <script src="http://cloud.tinymce.com/stable/tinymce.min.js?apiKey=dungle"></script>
+    <script>tinymce.init({ selector: 'textarea' });</script> -->
+    <title>Thêm thông báo</title>
+</head>
+
+<body>
+    <div class="container">
+        <%- include ../layout/nav %>
+
+        <div class="col-lg-12">
+            <div class="panel panel-default" style="margin-top: 100px;">
+                <div class="panel-heading" style="background-color: #408db9; color: white;">
+                    Thêm thông báo mới
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                            <% if (data && data.error){%>
+                            <div id="addNoti-alert" class="alert alert-danger col-sm-12">
+                                <%= data.error %>
+                            </div>
+                            <%}%>
+                                
+                            <form role="form" method="POST" action="/manager/notiMgt/new">
+                                <div class="form-group">
+                                    <label>Tiêu đề thông báo</label>
+                                    <input class="form-control" name="notiTitle" placeholder="Nhập tiêu đề thông báo">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Nội dung thông báo</label>
+                                    <textarea rows="10" class="form-control" name="notiContent"
+                                        placeholder="Nhập nội dung thông báo vào đây!"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <a href="/manager/notiMgt/listnoti">
+                                        <input class="btn btn-success" type="submit" name="" value="Thêm thông báo">
+                                    </a>
+                                    <a href="/manager/notiMgt/listnoti">
+                                        <input class="btn btn-primary notidetail" type="button" name="" value="Cancel">
+                                    </a>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+    </div>
+
+</body>
+
+</html>

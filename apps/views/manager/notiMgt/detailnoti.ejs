@@ -5,7 +5,7 @@
     <%- include ../layout/head %>
     <!-- <script src="http://cloud.tinymce.com/stable/tinymce.min.js?apiKey=dungle"></script>
     <script>tinymce.init({ selector: 'textarea' });</script> -->
-    <title>Xem tin tức</title>
+    <title>Xem thông báo</title>
 </head>
 
 <body>
@@ -15,35 +15,35 @@
         <div class="col-lg-12">
             <div class="panel panel-default" style="margin-top: 100px;">
                 <div class="panel-heading" style="background-color: #408db9; color: white;">
-                    Thông tin tin tức
+                    Chi tiết thông báo
                 </div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
 
-                            <input class="newsID" type="hidden" name="newsID" value="<% if(data && data.news) {%> <%= data.news.newsID %> <%}%>">
+                            <input class="notiID" type="hidden" name="notiID" value="<% if(data && data.notification) {%> <%= data.notification.notiID %> <%}%>">
 
                             <% if (data && data.error){%>
-                            <div id=" detailNews-alert" class="alert alert-danger col-sm-12">
+                            <div id=" detailNotification-alert" class="alert alert-danger col-sm-12">
                             <%= data.error %>
                         </div>
                         <%}%>
                                 
                             <form role="form" method="" action="">
                                 <div class="form-group">
-                                    <label for="newsTitle">Tiêu đề tin tức</label>
-                                    <input class="form-control newsTitle" name="newsTitle" placeholder="Nhập tiêu đề tin tức" value="<% if (data && data.news) {%><%= data.news.newsTitle%><%}%>" disabled>
+                                    <label for="notiTitle">Tiêu đề thông báo</label>
+                                    <input class="form-control notiTitle" name="notiTitle" placeholder="Nhập tiêu đề thông báo" value="<% if (data && data.notification) {%><%= data.notification.notiTitle%><%}%>" disabled>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="newsContent">Nội dung tin tức</label>
-                                    <textarea class="form-control newsContent" name="newsContent" rows="10"
-                                        placeholder="Nhập nội dung tin tức vào đây!" value="" disabled><% if (data && data.news){%><%= data.news.newsContent%><%}%></textarea>
+                                    <label for="notiContent">Nội dung thông báo</label>
+                                    <textarea class="form-control notiContent" name="notiContent" rows="10"
+                                        placeholder="Nhập nội dung thông báo vào đây!" value="" disabled><% if (data && data.notification){%><%= data.notification.notiContent%><%}%></textarea>
                                 </div>
 
                                 <div class="form-group">
-                                    <a href="/manager/newsMgt/listnews">
-                                        <input class="btn btn-success newsdetail" type="button" name="" value="Cancel">
+                                    <a href="/manager/notiMgt/listnoti">
+                                        <input class="btn btn-success notidetail" type="button" name="" value="Cancel">
                                     </a>
                                 </div>
 
@@ -57,7 +57,7 @@
             <!-- /.panel -->
         </div>
     </div>
-    <script type="text/javascript" src="/static/js/newsMgt.js"></script>
+    <script type="text/javascript" src="/static/js/notiMgt.js"></script>
 </body>
 
 </html>
