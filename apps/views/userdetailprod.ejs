@@ -71,11 +71,17 @@
                     <li class="nav__item">
                         <a href="#news" class="nav__link">Tin tức</a>
                     </li>
+                    <li class="nav__item">
+                        <a href="#account" class="nav__link">Tài khoản</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="/member/logout" class="nav__link">Đăng xuất</a>
+                    </li>
                 </ul>
 
 
                 <button type="button" id="btn-cart" class="btn btn-link">
-                    <a href="/guess/cart"><i class="fas fa-shopping-cart"></i></a>
+                    <i class="fas fa-shopping-cart"></i>
                 </button>
 
                 <div class="nav__toggler">
@@ -140,6 +146,7 @@
                     disabled><% if (data && data.product) {%><%= data.product.productDescribe%><%}%></textarea>
             </div>
 
+            
         </div>
         <div class="banner">
             <p class="banner__header">Sản phẩm tương tự</p>

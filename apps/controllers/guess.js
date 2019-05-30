@@ -6,7 +6,12 @@ const prodMd = require("../models/product");
 const helper = require("../helpers/helper");
 
 router.get("/", function (req, res) {
-    res.render("home", { data: {} });
+    console.log('req.session.user.userID: ', req.session.user.userID);
+    if (req.session.user.userID === 0) {
+        res.redirect("/member/home");
+    } else {
+        res.redirect("home", { data: {} });
+    };
 });
 
 router.get("/category/bodyskin", function(req, res){
@@ -170,6 +175,7 @@ router.get("/category/perfume", function(req, res){
 });
 
 router.get("/ctdetailprod/:productID", function (req, res) {
+    console.log('cart: ', req.session.cart)
     const params = req.params;
     const productID = params.productID;
 
@@ -191,7 +197,8 @@ router.get("/ctdetailprod/:productID", function (req, res) {
 });
 
 router.get("/cart", function (req,res) {
-    res.render("cart", { data : {}});
+    console.log('cart info: ', req.session.cart)
+    res.render("cart", { data : {cart:  req.session.cart}});
 });
 
 router.get("/signup", function (req, res) {
@@ -272,7 +279,7 @@ router.post("/signin", function (req, res) {
                 }
                 else {
                     req.session.user = user; //lưu thông tin user trong session
-                    console.log(req.session.user);
+                    console.log(req.session);
                     if (req.session.user.roleID === 0) {
                         res.redirect("/member/home");
                     }
@@ -285,6 +292,56 @@ router.post("/signin", function (req, res) {
         else {
             res.render("signin", { data: { error: "Người dùng không tồn tại!" } });
         }
+    }
+});
+
+router.post("/addtocart", function(req, res){
+
+    const {id, prodName, quantity = 1, imageUrl, price} = req.body;
+    // res.redirect('/guess/ctdetailprod/' + productId)
+    if (!req.session.cart) {
+        req.session.cart = []
+    };
+    req.session.cart.push({
+        productId: id,
+        quantity: quantity,
+        prodName,
+        imageUrl,
+        price
+    });
+    // for(let i; i < req.session.cart.length; i++) {
+    //     let totalPrice = 0;
+    //     totalprice = totalPrice + req.session.cart.price[i];
+    //     req.session.cart.push({
+    //         totalPrice: totalPrice
+    //     });
+    // }
+    res.status(200).send({
+        message: 'OK'
+    });
+});
+
+router.delete("/cart/delete", function (req, res) {
+    const productId = req.body.productId;
+    // for(let i=0; i < req.session.cart.length; i++) {
+    //     if(req.session.cart[i].productId === productId) {
+    //         req.session.cart.splice(i, 1);
+    //         console.log(req.session.cart);
+    //     }
+    // }
+    app = req.session.cart;
+    const removeIndex = app.map(function(el){ return el.productId; }).indexOf(productId);
+    app.splice(removeIndex, 1);
+
+    if (!data) {
+        res.json({ status_code: 500 });
+    }
+    else {
+        data.then(function (result) {
+            res.json({ status_code: 200 });
+        }).catch(function () {
+            res.json({ status_code: 500 });
+        });
     }
 });
 

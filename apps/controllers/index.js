@@ -8,7 +8,11 @@ router.use("/guess", require(__dirname + "/guess"));
 router.use("/manager", require(__dirname + "/manager"));
 
 router.get("/", function(req, res){
-    res.render("home");
+    if (req.session.user && req.session.user.roleID === 0) {
+        res.redirect("/member/home");
+    } else {
+        res.render("home");
+    };
 });
 
 module.exports = router;

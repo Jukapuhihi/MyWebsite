@@ -200,5 +200,12 @@ router.get("/user", function (req, res) {
     res.redirect("/admin");
 });
 
+router.get("/logout", function (req, res) {
+    if (req.session.admin) {
+        req.session.destroy();
+        res.redirect("/");
+        return res.status(200).send();
+    }
+});
 
 module.exports = router;

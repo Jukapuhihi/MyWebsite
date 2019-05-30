@@ -9,13 +9,13 @@
 
     <%- include ../layout/head %>
 
-    <title>Dành cho quý ông</title>
+    <title>Dịch vụ trang điểm</title>
     <link rel="stylesheet" type="text/css" href="../../static/css/home.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/category/bodyskin.css">
 </head>
 
 <body>
-    <%- include ../layout/header %>
+    <%- include ../member/header %>
 
     <button class="go-to-top ct-btn ct-btn--primary">
         <i class="fas fa-angle-up"></i>
@@ -37,7 +37,7 @@
             <% if(data && data.product) {%>
             <% for(let i=0; i < data.product.length; i++){%>
             <div class="item  col-xs-4 col-lg-4">
-                <a href="/guess/ctdetailprod/<%= data.product[i].productID%>" class="thumbnail">
+                <a href="/member/userdetailprod/<%= data.product[i].productID%>" class="thumbnail">
                     <div class="group list-group-image image-item">
                         <img src="http://myphamxachtayduc.vn/wp-content/uploads/2016/08/bebe-young-care-intensivpflege-gesichtscreme-2.jpg" alt="" />
                     </div>

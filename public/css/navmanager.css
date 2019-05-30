@@ -1,0 +1,7 @@
+.nav__item--active {
+    color: #408ab4;
+    background-color: white;
+}
+.nav__item--active a {
+    color: #408ab4 !important;
+}

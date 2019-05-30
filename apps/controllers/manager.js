@@ -9,6 +9,7 @@ const helper = require("../helpers/helper");
 
 
 router.get("/prodMgt/listprod", function (req, res) {
+    console.log('manager session: ', req.session)
     if (req.session.user && req.session.user.roleID === 1) {
         const params = req.params;
         let page = parseInt(req.query.page) || 1;
@@ -516,5 +517,15 @@ router.delete("/notiMgt/delete", function (req, res) {
     }
 });
 //end notification
+
+router.get("/logout", function (req, res) {
+    if (req.session.user && req.session.user.roleID === 1) {
+        req.session.destroy();
+        res.redirect("/");
+        return res.status(200).send();
+    } else {
+        res.redirect("/guess/signin");
+    }
+});
 
 module.exports = router;
