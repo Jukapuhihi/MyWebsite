@@ -1,5 +1,3 @@
-const cart = [];
-
 $(document).ready(function () {
     
     $('.addtocart').on('click', function () {
@@ -26,22 +24,6 @@ $(document).ready(function () {
                 console.log('heloooooo');
                 $('#btn-cart::after').css("content","2");
 
-            }
-        });
-    });
-   
-    $(".cartDelete").on("click", function (e) {
-        const productId = $(this).attr("producId");
-        const baseUrl = "http://localhost:3000";
-        $.ajax({
-            url: baseUrl + "/guess/cart/delete",
-            type: "DELETE",
-            data: {productId: productId},
-            dataType: "json",
-            success: function (res) {
-                if (res && res.status_code == 200) {
-                    location.reload();
-                }
             }
         });
     });

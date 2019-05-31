@@ -226,6 +226,22 @@ function deleteProduct(productID) {
     return false;
 }
 
+function decreaseProduct(productID, number) {
+    if (productID) {
+        const defer = q.defer();
+        const query = conn.query('UPDATE product SET quantity=quantity-? WHERE productID=? ', [number, productID], function (err, result) {
+            if (err) {
+                defer.reject(err);
+            }
+            else {
+                defer.resolve(result);
+            }
+        });
+        return defer.promise;
+    }
+    return false;
+}
+
 module.exports = {
     getAllProduct: getAllProduct,
     addProduct: addProduct,
@@ -241,5 +257,6 @@ module.exports = {
     getProductMakeupcourse: getProductMakeupcourse,
     getProductMakeupservice: getProductMakeupservice,
     getProductMakeuptool: getProductMakeuptool,
-    getProductPerfume: getProductPerfume
+    getProductPerfume: getProductPerfume,
+    decreaseProduct: decreaseProduct,
 }

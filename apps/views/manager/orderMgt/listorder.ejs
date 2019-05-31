@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <%- include ../layout/head %>
+    <link rel="stylesheet" type="text/css" href="../../static/css/limitdata.css">
+    <title>Quản lý đơn bán</title>
+</head>
+
+<body>
+    <%- include ../layout/nav %>
+
+    <div class="container">
+        <h3 style="margin-top: 80px; color: green;">Xin chào Quản lý!!!</h3>
+
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive" style="overflow: visible;">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row" style="line-height: 60px; display: flex; justify-content: space-between;">
+
+                            <div class="col-sm-12 col-md-6">
+                                <div id="dataTable_filter" class="dataTables_filter">
+                                    <label style="display: flex;"><span style="width: 80px; padding: 5px 0px;">Tìm
+                                            kiếm</span>
+                                        <input id="searchorder" type="search" class="form-control form-control-sm"
+                                            placeholder="Nhập từ khóa" aria-controls="dataTable"
+                                            style="width: 50%; margin-top: 18px;">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- <div class="col-sm-12 col-md-6"> -->
+                            <!-- <div class="dataTables_length" id="dataTable_length">
+                                    <label style="display: flex;"><span style="width: 55px; padding: 5px 0;">Hiển
+                                            thị</span>
+                                        <select name="dataTable_length" aria-controls="dataTable"
+                                            class="custom-select custom-select-sm form-control form-control-sm"
+                                            style="width: 10%; margin-top: 18px;">
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="50">50</option>
+                                        </select><span style="width: 35px; padding: 5px;">mục</span>
+                                    </label>
+                                </div> -->
+                            <!-- </div> -->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered dataTable" id="dataTable" cellspacing="0" role="grid"
+                                    aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row" style="background-color: #408db9; color: white;">
+                                            <th class="sorting_asc" aria-controls="dataTable"
+                                                style="width: 7%; text-align: center;">OrderID</th>
+                                            <th class="sorting" aria-controls="dataTable"
+                                                style="width: 8%; text-align: center;">UserID</th>
+                                            <th class="sorting" aria-controls="dataTable"
+                                                style="width: 55%; text-align: center;">Danh sách sản phẩm</th>
+                                            <th class="sorting" aria-controls="dataTable"
+                                                style="width: 10%; text-align: center;">Ngày tạo</th>
+                                            <th class="sorting" aria-controls="dataTable"
+                                                style="width: 10%; text-align: center;">Trạng thái</th>
+                                            <th class="sorting" aria-controls="dataTable"
+                                                style="width: 10%; text-align: center;">Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% if(data && data.ordertable) {%>
+                                        <% for(let i=0; i < data.ordertable.length; i++){%>
+                                        <tr>
+                                            <td> <%= data.ordertable[i].orderID%> </td>
+                                            <td> <%= data.ordertable[i].userID%> </td>
+                                            <td>
+                                                <p class="limitdata"><%= data.ordertable[i].listprod%></p>
+                                            </td>
+                                            <td> <%= data.ordertable[i].createDate%> </td>
+                                            <td> <%= data.ordertable[i].state%> </td>
+                                            <td style="display: flex; justify-content: space-around;">
+                                                <!-- <a href="detailorder/<%= data.ordertable[i].orderID%>"
+                                                    class="btn btn-primary btn-detail"> Xem </a> -->
+                                                <a href="editorder/<%= data.ordertable[i].orderID%>"
+                                                    class="btn btn-success btn-edit"> Sửa </a>
+                                            </td>
+                                        </tr>
+
+                                        <%}%>
+                                        <%}%>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="col-sm-12 col-md-5" style="line-height: 70px;">
+                                
+                            </div>
+
+                            <div class="col-sm-12 col-md-7">
+                                <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"
+                                    style="text-align: right;">
+                                    <ul class="pagination">
+                                        <li class="paginate_button page-item previous disabled" id="dataTable_previous">
+                                            <a href="#" aria-controls="dataTable" data-dt-idx="0"
+                                                class="page-link">Trang trước</a>
+                                        </li>
+                                        <li class="paginate_button page-item active">
+                                            <a href="#" aria-controls="dataTable" data-dt-idx="1"
+                                                class="page-link">1</a>
+                                        </li>
+                                        <li class="paginate_button page-item ">
+                                            <a href="#" aria-controls="dataTable" data-dt-idx="2"
+                                                class="page-link">2</a>
+                                        </li>
+                                        <li class="paginate_button page-item ">
+                                            <a href="#" aria-controls="dataTable" data-dt-idx="3"
+                                                class="page-link">3</a>
+                                        </li>
+                                        <li class="paginate_button page-item ">
+                                            <a href="#" aria-controls="dataTable" data-dt-idx="4"
+                                                class="page-link">4</a>
+                                        </li>
+                                        <li class="paginate_button page-item ">
+                                            <a href="#" aria-controls="dataTable" data-dt-idx="5"
+                                                class="page-link">5</a>
+                                        </li>
+                                        <li class="paginate_button page-item ">
+                                            <a href="#" aria-controls="dataTable" data-dt-idx="6"
+                                                class="page-link">6</a>
+                                        </li>
+                                        <li class="paginate_button page-item next" id="dataTable_next">
+                                            <a href="#" aria-controls="dataTable" data-dt-idx="7"
+                                                class="page-link">Trang sau</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <script type="text/javascript" src="/static/js/orderMgt.js"></script>
+</body>

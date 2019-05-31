@@ -4,6 +4,7 @@ const router = express.Router();
 const userMd = require("../models/user");
 const prodMd = require("../models/product");
 const newsMd = require("../models/news");
+const orderMd = require("../models/order");
 const notiMd = require("../models/notification");
 const helper = require("../helpers/helper");
 
@@ -61,31 +62,6 @@ router.post("/prodMgt/new", function (req, res) {
         };
         res.render("manager/prodMgt/new", { data: data });
     }
-
-    // if (!params.productImg) return res.status(400).send('Không có file nào được tải lên!');
-
-    // var file = params.productImg.uploaded_image;
-    // // var img_name = file.name;
-
-    // if (file.mimetype == "image/jpeg" || file.mimetype == "image/png" || file.mimetype == "image/gif") {
-
-    //     file.mv('public/imgs/' + file.name, function (err) {
-
-    //         if (err)
-    //         return res.status(500).send(err);
-    //         // var sql = "INSERT INTO `users_image`(`first_name`,`last_name`,`mob_no`,`user_name`, `password` ,`image`) VALUES ('" + fname + "','" + lname + "','" + mob + "','" + name + "','" + pass + "','" + img_name + "')";
-
-    //         // var query = db.query(sql, function (err, result) {
-    //         //     res.redirect('/manager/prodMgt/listprod' + result.insertId);
-    //         // });
-    //     });
-    // } 
-    // // else {
-    // //     message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
-    // //     res.render('/manager/prodMgt/new', { message: message });
-    // // }
-
-
     const now = new Date();
     params.createDate = now;
     data = prodMd.addProduct(params);
@@ -517,6 +493,74 @@ router.delete("/notiMgt/delete", function (req, res) {
     }
 });
 //end notification
+
+//order
+router.get("/orderMgt/listorder", function (req, res) {
+    if (req.session.user && req.session.user.roleID === 1) {
+        const params = req.params;
+        let page = parseInt(req.query.page) || 1;
+        const data = orderMd.getAllOrder();
+
+        data.then(function (ordertable) {
+            const data = {
+                ordertable: ordertable,
+                error: false
+            }
+            res.render("manager/orderMgt/listorder", { data: data });
+        }).catch(function (err) {
+            res.render("manager/orderMgt/listorder", { data: { error: "Không thể lấy danh sách đơn bán!" } });
+        });
+    } else {
+        res.redirect("/guess/signin");
+    }
+});
+
+router.get("/orderMgt/editorder/:orderID", function (req, res) {
+    if (req.session.user && req.session.user.roleID === 1) {
+        const params = req.params;
+        const orderID = params.orderID;
+        console.log('orderID: ', orderID)
+
+        const data = orderMd.getOrderByOrderID(orderID);
+
+        if (data) {
+            data.then(function (arrorder) {
+                const ordertable = arrorder[0];
+                const data = {
+                    ordertable: ordertable,
+                    error: false
+                };
+                console.log(data);
+                res.render("manager/orderMgt/editorder", { data: data });
+            }).catch(function (err) {
+                res.render("manager/orderMgt/editorder", { data: { error: "Không thể lấy dữ liệu đơn hàng này!" } });
+            });
+        }
+        else {
+            res.render("manager/orderMgt/editorder", { data: { error: "Không thể lấy dữ liệu đơn hàng này!" } });
+        }
+    } else {
+        res.redirect("/guess/signin");
+    }
+});
+
+router.put("/orderMgt/editorder", function (req, res) {
+    const params = req.body;
+    console.log('params', params);
+    data = orderMd.updateOrder(params);
+
+    if (!data) {
+        res.json({ status_code: 500 });
+    }
+    else {
+        data.then(function (result) {
+            res.json({ status_code: 200 });
+        }).catch(function (err) {
+            res.json({ status_code: 500 });
+        });
+    }
+});
+//endorder
 
 router.get("/logout", function (req, res) {
     if (req.session.user && req.session.user.roleID === 1) {

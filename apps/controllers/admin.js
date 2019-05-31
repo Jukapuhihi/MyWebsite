@@ -84,16 +84,16 @@ router.put("/userMgt/edituser", function (req, res) {
     console.log(params);
     data = userMd.updateRole(params);
 
-    if (!data) {
+    // if (!data) {
+    //     res.json({ status_code: 500 });
+    // }
+    // else {
+    data.then(function (result) {
+        res.json({ status_code: 200 });
+    }).catch(function (err) {
         res.json({ status_code: 500 });
-    }
-    else {
-        data.then(function (result) {
-            res.json({ status_code: 200 });
-        }).catch(function (err) {
-            res.json({ status_code: 500 });
-        });
-    }
+    });
+    // }
 });
 
 router.delete("/userMgt/delete", function (req, res) {

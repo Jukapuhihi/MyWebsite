@@ -7,7 +7,7 @@ const helper = require("../helpers/helper");
 
 router.get("/", function (req, res) {
     console.log('req.session.user.userID: ', req.session.user.userID);
-    if (req.session.user.userID === 0) {
+    if (req.session.user && req.session.user.roleID === 0) {
         res.redirect("/member/home");
     } else {
         res.redirect("home", { data: {} });
@@ -197,16 +197,21 @@ router.get("/ctdetailprod/:productID", function (req, res) {
 });
 
 router.get("/cart", function (req,res) {
-    console.log('cart info: ', req.session.cart)
+    // console.log('cart info: ', req.session.cart)
     res.render("cart", { data : {cart:  req.session.cart}});
 });
 
 router.get("/signup", function (req, res) {
+    if (req.session.user && req.session.user.roleID === 0) {
+        res.redirect("/member/home");
+        return;
+    }
     res.render("signup", { data: {} });
 });
 
 router.post("/signup", function (req, res) {
-
+    console.log('req.session.user: ', req.session.user)
+    
     let user = req.body;
 
     if (user.username.trim().length === 0) {
@@ -241,7 +246,7 @@ router.post("/signup", function (req, res) {
             phone: user.phone,
             address: user.address,
             createDate: user.createDate,
-            roleID: user.roleID
+            roleID: 0
         }
         const result = userMd.addUser(user);
 
@@ -254,7 +259,12 @@ router.post("/signup", function (req, res) {
 });
 
 router.get("/signin", function (req, res) {
-    res.render("signin", { data: {} });
+    if (req.session.user && req.session.user.roleID === 0) {
+        res.redirect("/member/home");
+    } else {
+        res.render("signin", { data: {} });
+    };
+    
 });
 
 router.post("/signin", function (req, res) {
@@ -302,13 +312,23 @@ router.post("/addtocart", function(req, res){
     if (!req.session.cart) {
         req.session.cart = []
     };
-    req.session.cart.push({
-        productId: id,
-        quantity: quantity,
-        prodName,
-        imageUrl,
-        price
-    });
+
+    let productIsExist = false;
+    req.session.cart.forEach((product) => {
+        if (product.productId == id) {
+            product.quantity += 1;
+            productIsExist = true;
+        }
+    })
+    if (!productIsExist) {
+        req.session.cart.push({
+            productId: id,
+            quantity: quantity,
+            prodName,
+            imageUrl,
+            price
+        });
+    }
     // for(let i; i < req.session.cart.length; i++) {
     //     let totalPrice = 0;
     //     totalprice = totalPrice + req.session.cart.price[i];
@@ -329,20 +349,13 @@ router.delete("/cart/delete", function (req, res) {
     //         console.log(req.session.cart);
     //     }
     // }
-    app = req.session.cart;
-    const removeIndex = app.map(function(el){ return el.productId; }).indexOf(productId);
+    console.log(productId)
+    const app = req.session.cart;
+    const removeIndex = app.map(function(el){ return el.productId; }).indexOf(productId.toString());
     app.splice(removeIndex, 1);
+    console.log('removeIndex: ', removeIndex);
 
-    if (!data) {
-        res.json({ status_code: 500 });
-    }
-    else {
-        data.then(function (result) {
-            res.json({ status_code: 200 });
-        }).catch(function () {
-            res.json({ status_code: 500 });
-        });
-    }
+    res.json({ status_code: 200 });
 });
 
 module.exports = router;

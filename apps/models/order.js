@@ -5,12 +5,12 @@ const conn = db.getConnection();
 
 function getAllOrder() {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM order', function (err, order) {
+    const query = conn.query('SELECT * FROM ordertable', function (err, ordertable) {
         if (err) {
             defer.reject(err);
         }
         else {
-            defer.resolve(order);
+            defer.resolve(ordertable);
         }
     });
     return defer.promise;
@@ -19,7 +19,7 @@ function getAllOrder() {
 function addOrder(params) {
     if (params) {
         const defer = q.defer();
-        const query = conn.query('INSERT INTO order SET ?', params, function (err, result) {
+        const query = conn.query('INSERT INTO ordertable SET ?', params, function (err, result) {
             if (err) {
                 defer.reject(err);
             }
@@ -35,7 +35,7 @@ function addOrder(params) {
 function getOrderByOrderID(orderID) {
     if (orderID) {
         const defer = q.defer();
-        const query = conn.query('SELECT * FROM order WHERE ?', { orderID: orderID }, function (err, result) {
+        const query = conn.query('SELECT * FROM ordertable WHERE ?', { orderID: orderID }, function (err, result) {
             if (err) {
                 defer.reject(err);
             }
@@ -51,7 +51,7 @@ function getOrderByOrderID(orderID) {
 function updateOrder(params) {
     if (params) {
         const defer = q.defer();
-        const query = conn.query('UPDATE order SET state=? WHERE orderID=?', [params.state, params.orderID], function (err, result) {
+        const query = conn.query('UPDATE ordertable SET state=? WHERE orderID=?', [params.state, params.orderID], function (err, result) {
             if (err) {
                 defer.reject(err);
             }
@@ -67,7 +67,7 @@ function updateOrder(params) {
 function deleteOrder(orderID) {
     if (orderID) {
         const defer = q.defer();
-        const query = conn.query('DELETE FROM order WHERE ?', { orderID: orderID }, function (err, result) {
+        const query = conn.query('DELETE FROM ordertable WHERE ?', { orderID: orderID }, function (err, result) {
             if (err) {
                 defer.reject(err);
             }
