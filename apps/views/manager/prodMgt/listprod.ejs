@@ -20,14 +20,14 @@
                         <div class="row" style="line-height: 60px; display: flex; justify-content: space-between;">
 
                             <div class="col-sm-12 col-md-6">
-                                <div id="dataTable_filter" class="dataTables_filter">
+                                <form class="header__form" action="">
                                     <label style="display: flex;"><span style="width: 80px; padding: 5px 0px;">Tìm
-                                            kiếm</span>
-                                        <input id="searchprod" type="search" class="form-control form-control-sm"
-                                            placeholder="Nhập từ khóa" aria-controls="dataTable"
-                                            style="width: 50%; margin-top: 18px;">
-                                    </label>
-                                </div>
+                                        kiếm</span>
+                                    <input id="searchprod" type="search" class="form-control form-control-sm"
+                                        placeholder="Nhập từ khóa" aria-controls="dataTable" name="keyword"
+                                        style="width: 50%; margin-top: 18px;">
+                                </label>
+                                </form>
                             </div>
 
                             <div class="col-sm-12 col-md-6">
@@ -77,8 +77,8 @@
                                                 style="width: 10%; text-align: center;">Ngày tạo</th>
                                             <th class="sorting" aria-controls="dataTable"
                                                 style="width: 20%; text-align: center;">Mô tả sản phẩm</th>
-                                            <!-- <th class="sorting" aria-controls="dataTable"
-                                                style="width: 10%; text-align: center;">Hình ảnh</th> -->
+                                            <th class="sorting" aria-controls="dataTable"
+                                                style="width: 10%; text-align: center;">Hình ảnh</th>
                                             <th class="sorting" aria-controls="dataTable"
                                                 style="width: 15%; text-align: center;">Chức năng</th>
                                         </tr>
@@ -97,7 +97,7 @@
                                             <td>
                                                 <p class="limitdata"><%= data.product[i].productDescribe%></p>
                                             </td>
-                                            <!-- <td> <%= data.product[i].productImg%> </td> -->
+                                            <td> <%= data.product[i].productImg%> </td>
                                             <td style="display: flex; justify-content: space-around;">
                                                 <a href="detailprod/<%= data.product[i].productID%>"
                                                     class="btn btn-primary btn-detail"> Xem </a>

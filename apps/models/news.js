@@ -3,9 +3,9 @@ const db = require("../common/database");
 
 const conn = db.getConnection();
 
-function getAllNews() {
+function getAllNews(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM news', function (err, news) {
+    const query = conn.query('SELECT * FROM news WHERE newsTitle LIKE ?', ['%' + keyword + '%'], function (err, news) {
         if (err) {
             defer.reject(err);
         }

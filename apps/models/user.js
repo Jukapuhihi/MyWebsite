@@ -67,9 +67,9 @@ function getUserByUserID(userID) {
     return false;
 }
 
-function getAllUsers() {
+function getAllUsers(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM user', function (err, user) {
+    const query = conn.query('SELECT * FROM user WHERE username LIKE ?',['%' + keyword + '%'], function (err, user) {
         if (err) {
             defer.reject(err);
         }

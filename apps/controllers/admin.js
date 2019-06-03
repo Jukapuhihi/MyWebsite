@@ -9,7 +9,10 @@ const helper = require("../helpers/helper");
 router.get("/", function (req, res) {
     if (req.session.admin) {
         // res.json({"message": "This is Admin Page"});
-        const data = userMd.getAllUsers();
+        // const data = userMd.getAllUsers();
+        const keyword = req.query.keyword;
+
+        const data = keyword == undefined ? userMd.getAllUsers('') : userMd.getAllUsers(keyword.trim());
         data.then(function (user) {
             const data = {
                 user: user,

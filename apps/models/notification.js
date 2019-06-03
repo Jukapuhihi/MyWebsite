@@ -3,9 +3,9 @@ const db = require("../common/database");
 
 const conn = db.getConnection();
 
-function getAllNotification() {
+function getAllNotification(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM notification', function (err, notification) {
+    const query = conn.query('SELECT * FROM notification WHERE notiTitle LIKE ?', ['%' + keyword + '%'], function (err, notification) {
         if (err) {
             defer.reject(err);
         }

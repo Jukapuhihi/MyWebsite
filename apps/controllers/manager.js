@@ -14,7 +14,9 @@ router.get("/prodMgt/listprod", function (req, res) {
     if (req.session.user && req.session.user.roleID === 1) {
         const params = req.params;
         let page = parseInt(req.query.page) || 1;
-        const data = prodMd.getAllProduct();
+        const keyword = req.query.keyword;
+
+        const data = keyword == undefined ? prodMd.getAllProduct('') : prodMd.getAllProduct(keyword.trim());
 
         data.then(function (product) {
             const data = {
@@ -30,20 +32,6 @@ router.get("/prodMgt/listprod", function (req, res) {
     }
 });
 
-router.post("/prodMgt/listprod/searchprod", (req, res) => {
-    let search = req.body.data;
-    let sql = "select * from product where lower(productName) like lower('%" + searchprod + "%')";
-
-    res.send(searchprod);
-});
-
-router.get("/prodMgt/listprod/searchprod", function (req, res) {
-    if (req.session.user && req.session.user.roleID === 1) {
-        res.render("manager/prodMgt/listprod/searchprod", { data: { error: false } });
-    } else {
-        res.redirect("/guess/signin");
-    }
-});
 
 router.get("/prodMgt/new", function (req, res) {
     if (req.session.user && req.session.user.roleID === 1) {
@@ -130,13 +118,6 @@ router.get("/prodMgt/editprod/:productID", function (req, res) {
     }
 });
 
-router.post("/prodMgt/listprod/searchprod", (req, res) => {
-    const search = req.body.data;
-    const sql = "select * from product where lower(productName) like lower('%" + searchprod + "%')";
-
-    res.send(search);
-});
-
 router.put("/prodMgt/editprod", function (req, res) {
     const params = req.body;
     console.log(params);
@@ -176,7 +157,10 @@ router.get("/newsMgt/listnews", function (req, res) {
     if (req.session.user && req.session.user.roleID === 1) {
         const params = req.params;
         let page = parseInt(req.query.page) || 1;
-        const data = newsMd.getAllNews();
+        // const data = newsMd.getAllNews();
+        const keyword = req.query.keyword;
+
+        const data = keyword == undefined ? newsMd.getAllNews('') : newsMd.getAllNews(keyword.trim());
 
         data.then(function (news) {
             const data = {
@@ -187,21 +171,6 @@ router.get("/newsMgt/listnews", function (req, res) {
         }).catch(function (err) {
             res.render("manager/newsprodMgt/listnews", { data: { error: "Không thể lấy danh sách tin tức!" } });
         });
-    } else {
-        res.redirect("/guess/signin");
-    }
-});
-
-router.post("/newsMgt/listnews/searchnews", (req, res) => {
-    let search = req.body.data;
-    let sql = "select * from news where lower(newsTitle)) like lower('%" + searchnews + "%')";
-
-    res.send(searchnews);
-});
-
-router.get("/newsMgt/listnews/searchnews", function (req, res) {
-    if (req.session.user && req.session.user.roleID === 1) {
-        res.render("manager/newsMgt/listnews/searchnews", { data: { error: false } });
     } else {
         res.redirect("/guess/signin");
     }
@@ -295,13 +264,6 @@ router.get("/newsMgt/editnews/:newsID", function (req, res) {
     }
 });
 
-router.post("/newsMgt/listnews/searchnews", (req, res) => {
-    const search = req.body.data;
-    const sql = "select * from news where lower(newsTitle) like lower('%" + searchnews + "%')";
-
-    res.send(search);
-});
-
 router.put("/newsMgt/editnews", function (req, res) {
     const params = req.body;
     console.log(params);
@@ -341,7 +303,10 @@ router.get("/notiMgt/listnoti", function (req, res) {
     if (req.session.user && req.session.user.roleID === 1) {
         const params = req.params;
         let page = parseInt(req.query.page) || 1;
-        const data = notiMd.getAllNotification();
+        // const data = notiMd.getAllNotification();
+        const keyword = req.query.keyword;
+
+        const data = keyword == undefined ? notiMd.getAllNotification('') : notiMd.getAllNotification(keyword.trim());
 
         data.then(function (notification) {
             const data = {
@@ -352,21 +317,6 @@ router.get("/notiMgt/listnoti", function (req, res) {
         }).catch(function (err) {
             res.render("manager/notiprodMgt/listnoti", { data: { error: "Không thể lấy danh sách thông báo!" } });
         });
-    } else {
-        res.redirect("/guess/signin");
-    }
-});
-
-router.post("/notiMgt/listnoti/searchnoti", (req, res) => {
-    let search = req.body.data;
-    let sql = "select * from notification where lower(notiTitle)) like lower('%" + searchnoti + "%')";
-
-    res.send(searchnoti);
-});
-
-router.get("/notiMgt/listnoti/searchnoti", function (req, res) {
-    if (req.session.user && req.session.user.roleID === 1) {
-        res.render("manager/notiMgt/listnoti/searchnoti", { data: { error: false } });
     } else {
         res.redirect("/guess/signin");
     }
@@ -499,7 +449,10 @@ router.get("/orderMgt/listorder", function (req, res) {
     if (req.session.user && req.session.user.roleID === 1) {
         const params = req.params;
         let page = parseInt(req.query.page) || 1;
-        const data = orderMd.getAllOrder();
+        // const data = orderMd.getAllOrder();
+        const keyword = req.query.keyword;
+
+        const data = keyword == undefined ? orderMd.getAllOrder('') : orderMd.getAllOrder(keyword.trim());
 
         data.then(function (ordertable) {
             const data = {

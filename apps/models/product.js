@@ -3,9 +3,9 @@ const db = require("../common/database");
 
 const conn = db.getConnection();
 
-function getAllProduct() {
+function getAllProduct(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM product', function (err, product) {
+    const query = conn.query('SELECT * FROM product WHERE productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
         if (err) {
             defer.reject(err);
         }
@@ -146,21 +146,135 @@ function getProductPerfume() {
     return defer.promise;
 }
 
-// function getAllProduct(page) {
-//     if (page) {
-//         const defer = q.defer();
-//         const query = conn.query('SELECT * FROM product LIMIT 2 OFFSET 2*?', page, function (err, product) {
-//             if (err) {
-//                 defer.reject(err);
-//             }
-//             else {
-//                 defer.resolve(product);
-//             }
-//         });
-//         return defer.promise;
-//     }
-//     return false;
-// }
+function getProductBodyskinByKeyword(keyword) {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Chăm sóc da toàn thân" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
+function getProductBeautyserviceByKeyword(keyword) {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Dịch vụ làm đẹp" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
+function getProductFaceskinByKeyword(keyword) {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Chăm sóc da mặt" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
+function getProductFormenByKeyword(keyword) {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Dành cho quý ông" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
+function getProductHairnailByKeyword(keyword) {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Chăm sóc tóc và móng" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
+function getProductMakeupByKeyword(keyword) {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Trang điểm" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
+function getProductMakeupcourseByKeyword(keyword) {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Khóa học trang điểm" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
+function getProductMakeupserviceByKeyword(keyword) {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Dịch vụ trang điểm" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
+function getProductMakeuptoolByKeyword(keyword) {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Dụng cụ trang điểm" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
+
+function getProductPerfumeByKeyword(keyword) {
+    const defer = q.defer();
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Nước hoa" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+        if (err) {
+            defer.reject(err);
+        }
+        else {
+            defer.resolve(product);
+        }
+    });
+    return defer.promise;
+}
 
 function addProduct(params) {
     if (params) {
@@ -258,5 +372,15 @@ module.exports = {
     getProductMakeupservice: getProductMakeupservice,
     getProductMakeuptool: getProductMakeuptool,
     getProductPerfume: getProductPerfume,
-    decreaseProduct: decreaseProduct,
+    decreaseProduct,
+    getProductBodyskinByKeyword,
+    getProductBeautyserviceByKeyword,
+    getProductFaceskinByKeyword,
+    getProductFormenByKeyword,
+    getProductPerfumeByKeyword,
+    getProductMakeupByKeyword,
+    getProductMakeupcourseByKeyword,
+    getProductMakeuptoolByKeyword,
+    getProductHairnailByKeyword,
+    getProductMakeupserviceByKeyword
 }

@@ -78,7 +78,6 @@
                         <th>Số lượng</th>
                         <th class="text-center">Giá</th>
                         <th class="text-center">Tổng</th>
-                        <th>&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -88,14 +87,13 @@
                         <td> <%= data.cart[i].prodName%> </td>
                         <td> <%= data.cart[i].quantity%> </td>
                         <td> <%= data.cart[i].price%> </td>
-                        <td> <%= data.cart[i].totalPrice%> </td>
-                        <td style="display: flex; justify-content: space-around;">
-                            <button class="btn btn-danger cartDelete" productId="<%= data.cart[i].productId%>"> Xóa
-                            </button>
-                        </td>
                     </tr>
                     <%}%>
                     <%}%>
+                    <tr>
+                        <td colspan="3"></td>
+                        <td>  </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

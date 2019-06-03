@@ -3,9 +3,9 @@ const db = require("../common/database");
 
 const conn = db.getConnection();
 
-function getAllOrder() {
+function getAllOrder(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM ordertable', function (err, ordertable) {
+    const query = conn.query('SELECT * FROM ordertable WHERE state LIKE ?',['%' + keyword + '%'], function (err, ordertable) {
         if (err) {
             defer.reject(err);
         }

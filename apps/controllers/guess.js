@@ -16,8 +16,17 @@ router.get("/", function (req, res) {
 
 router.get("/category/bodyskin", function(req, res){
     const params = req.params;
-    let page = parseInt(req.query.page) || 1;
-    const data = prodMd.getProductBodyskin();
+
+    const keyword = req.query.keyword;
+
+    let data;
+    if (keyword != undefined) {
+        data = prodMd.getProductBodyskinByKeyword(keyword.trim());
+    } else {
+        data = prodMd.getProductBodyskin();
+    }
+    // let page = parseInt(req.query.page) || 1;
+    
 
     data.then(function(product){
         const data = {
@@ -32,8 +41,16 @@ router.get("/category/bodyskin", function(req, res){
 
 router.get("/category/beautyservice", function(req, res){
     const params = req.params;
-    let page = parseInt(req.query.page) || 1;
-    const data = prodMd.getProductBeautyservice();
+    // let page = parseInt(req.query.page) || 1;
+    // const data = prodMd.getProductBeautyservice();
+    const keyword = req.query.keyword;
+
+    let data;
+    if (keyword != undefined) {
+        data = prodMd.getProductBeautyserviceByKeyword(keyword.trim());
+    } else {
+        data = prodMd.getProductBeautyservice();
+    }
 
     data.then(function(product){
         const data = {
@@ -49,7 +66,15 @@ router.get("/category/beautyservice", function(req, res){
 router.get("/category/faceskin", function(req, res){
     const params = req.params;
     let page = parseInt(req.query.page) || 1;
-    const data = prodMd.getProductFaceskin();
+    // const data = prodMd.getProductFaceskin();
+    const keyword = req.query.keyword;
+
+    let data;
+    if (keyword != undefined) {
+        data = prodMd.getProductFaceskinByKeyword(keyword.trim());
+    } else {
+        data = prodMd.getProductFaceskin();
+    }
 
     data.then(function(product){
         const data = {
@@ -65,7 +90,15 @@ router.get("/category/faceskin", function(req, res){
 router.get("/category/formen", function(req, res){
     const params = req.params;
     let page = parseInt(req.query.page) || 1;
-    const data = prodMd.getProductFormen();
+    // const data = prodMd.getProductFormen();
+    const keyword = req.query.keyword;
+
+    let data;
+    if (keyword != undefined) {
+        data = prodMd.getProductFormenByKeyword(keyword.trim());
+    } else {
+        data = prodMd.getProductFormen();
+    }
 
     data.then(function(product){
         const data = {
@@ -81,7 +114,15 @@ router.get("/category/formen", function(req, res){
 router.get("/category/hairnail", function(req, res){
     const params = req.params;
     let page = parseInt(req.query.page) || 1;
-    const data = prodMd.getProductHairnail();
+    // const data = prodMd.getProductHairnail();
+    const keyword = req.query.keyword;
+
+    let data;
+    if (keyword != undefined) {
+        data = prodMd.getProductHairnailByKeyword(keyword.trim());
+    } else {
+        data = prodMd.getProductHairnail();
+    }
 
     data.then(function(product){
         const data = {
@@ -96,8 +137,16 @@ router.get("/category/hairnail", function(req, res){
 
 router.get("/category/makeup", function(req, res){
     const params = req.params;
-    let page = parseInt(req.query.page) || 1;
-    const data = prodMd.getProductMakeup();
+    // let page = parseInt(req.query.page) || 1;
+    // const data = prodMd.getProductMakeup();
+    const keyword = req.query.keyword;
+
+    let data;
+    if (keyword != undefined) {
+        data = prodMd.getProductMakeupByKeyword(keyword.trim());
+    } else {
+        data = prodMd.getProductMakeup();
+    }
 
     data.then(function(product){
         const data = {
@@ -112,8 +161,16 @@ router.get("/category/makeup", function(req, res){
 
 router.get("/category/makeupcourse", function(req, res){
     const params = req.params;
-    let page = parseInt(req.query.page) || 1;
-    const data = prodMd.getProductMakeupcourse();
+    // let page = parseInt(req.query.page) || 1;
+    // const data = prodMd.getProductMakeupcourse();
+    const keyword = req.query.keyword;
+
+    let data;
+    if (keyword != undefined) {
+        data = prodMd.getProductMakeupcourseByKeyword(keyword.trim());
+    } else {
+        data = prodMd.getProductMakeupcourse();
+    }
 
     data.then(function(product){
         const data = {
@@ -128,8 +185,16 @@ router.get("/category/makeupcourse", function(req, res){
 
 router.get("/category/makeupservice", function(req, res){
     const params = req.params;
-    let page = parseInt(req.query.page) || 1;
-    const data = prodMd.getProductMakeupservice();
+    // let page = parseInt(req.query.page) || 1;
+    // const data = prodMd.getProductMakeupservice();
+    const keyword = req.query.keyword;
+
+    let data;
+    if (keyword != undefined) {
+        data = prodMd.getProductMakeupserviceByKeyword(keyword.trim());
+    } else {
+        data = prodMd.getProductMakeupservice();
+    }
 
     data.then(function(product){
         const data = {
@@ -144,8 +209,16 @@ router.get("/category/makeupservice", function(req, res){
 
 router.get("/category/makeuptool", function(req, res){
     const params = req.params;
-    let page = parseInt(req.query.page) || 1;
-    const data = prodMd.getProductMakeuptool();
+    // let page = parseInt(req.query.page) || 1;
+    // const data = prodMd.getProductMakeuptool();
+    const keyword = req.query.keyword;
+
+    let data;
+    if (keyword != undefined) {
+        data = prodMd.getProductMakeuptoolByKeyword(keyword.trim());
+    } else {
+        data = prodMd.getProductMakeuptool();
+    }
 
     data.then(function(product){
         const data = {
@@ -160,8 +233,16 @@ router.get("/category/makeuptool", function(req, res){
 
 router.get("/category/perfume", function(req, res){
     const params = req.params;
-    let page = parseInt(req.query.page) || 1;
-    const data = prodMd.getProductPerfume();
+    // let page = parseInt(req.query.page) || 1;
+    // const data = prodMd.getProductPerfume();
+    const keyword = req.query.keyword;
+
+    let data;
+    if (keyword != undefined) {
+        data = prodMd.getProductPerfumeByKeyword(keyword.trim());
+    } else {
+        data = prodMd.getProductPerfume();
+    }
 
     data.then(function(product){
         const data = {

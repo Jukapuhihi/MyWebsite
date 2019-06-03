@@ -91,8 +91,8 @@ router.post("/checkout", function (req, res) {
             }
         });
         const address = req.body.address;
-        console.log('cart: ', cart);
-        console.log('user: ', req.session.user);
+        // console.log('cart: ', cart);
+        // console.log('user: ', req.session.user);
 
         const params = {
             state: 'Chờ xử lý',
@@ -115,7 +115,7 @@ router.post("/checkout", function (req, res) {
                 res.json({ status_code: 200 });
             })
             .catch(function (error) {
-                console.log('error: ', error);
+                // console.log('error: ', error);
                 res.json({ status_code: 500, message: error.message });
             });
         } else {
@@ -141,8 +141,16 @@ router.get("/accMgt/editprofile", function (req, res) {
 router.get("/ctcategory/bodyskin", function (req, res) {
     if (req.session.user && req.session.user.roleID === 0) {
         const params = req.params;
-        let page = parseInt(req.query.page) || 1;
-        const data = prodMd.getProductBodyskin();
+        // let page = parseInt(req.query.page) || 1;
+        // const data = prodMd.getProductBodyskin();
+        const keyword = req.query.keyword;
+
+        let data;
+        if (keyword != undefined) {
+            data = prodMd.getProductBodyskinByKeyword(keyword.trim());
+        } else {
+            data = prodMd.getProductBodyskin();
+        }
 
         data.then(function (product) {
             const data = {
@@ -161,8 +169,16 @@ router.get("/ctcategory/bodyskin", function (req, res) {
 router.get("/ctcategory/beautyservice", function (req, res) {
     if (req.session.user && req.session.user.roleID === 0) {
         const params = req.params;
-        let page = parseInt(req.query.page) || 1;
-        const data = prodMd.getProductBeautyservice();
+        // let page = parseInt(req.query.page) || 1;
+        // const data = prodMd.getProductBeautyservice();
+        const keyword = req.query.keyword;
+
+        let data;
+        if (keyword != undefined) {
+            data = prodMd.getProductBeautyserviceByKeyword(keyword.trim());
+        } else {
+            data = prodMd.getProductBeautyservice();
+        }
 
         data.then(function (product) {
             const data = {
@@ -181,8 +197,16 @@ router.get("/ctcategory/beautyservice", function (req, res) {
 router.get("/ctcategory/faceskin", function (req, res) {
     if (req.session.user && req.session.user.roleID === 0) {
         const params = req.params;
-        let page = parseInt(req.query.page) || 1;
-        const data = prodMd.getProductFaceskin();
+        // let page = parseInt(req.query.page) || 1;
+        // const data = prodMd.getProductFaceskin();
+        const keyword = req.query.keyword;
+
+        let data;
+        if (keyword != undefined) {
+            data = prodMd.getProductFaceskinByKeyword(keyword.trim());
+        } else {
+            data = prodMd.getProductFaceskin();
+        }
 
         data.then(function (product) {
             const data = {
@@ -201,8 +225,16 @@ router.get("/ctcategory/faceskin", function (req, res) {
 router.get("/ctcategory/formen", function (req, res) {
     if (req.session.user && req.session.user.roleID === 0) {
         const params = req.params;
-        let page = parseInt(req.query.page) || 1;
-        const data = prodMd.getProductFormen();
+        // let page = parseInt(req.query.page) || 1;
+        // const data = prodMd.getProductFormen();
+        const keyword = req.query.keyword;
+
+        let data;
+        if (keyword != undefined) {
+            data = prodMd.getProductFormenByKeyword(keyword.trim());
+        } else {
+            data = prodMd.getProductFormen();
+        }
 
         data.then(function (product) {
             const data = {
@@ -221,8 +253,16 @@ router.get("/ctcategory/formen", function (req, res) {
 router.get("/ctcategory/hairnail", function (req, res) {
     if (req.session.user && req.session.user.roleID === 0) {
         const params = req.params;
-        let page = parseInt(req.query.page) || 1;
-        const data = prodMd.getProductHairnail();
+        // let page = parseInt(req.query.page) || 1;
+        // const data = prodMd.getProductHairnail();
+        const keyword = req.query.keyword;
+
+        let data;
+        if (keyword != undefined) {
+            data = prodMd.getProductHairnailByKeyword(keyword.trim());
+        } else {
+            data = prodMd.getProductHairnail();
+        }
 
         data.then(function (product) {
             const data = {
@@ -241,8 +281,16 @@ router.get("/ctcategory/hairnail", function (req, res) {
 router.get("/ctcategory/makeup", function (req, res) {
     if (req.session.user && req.session.user.roleID === 0) {
         const params = req.params;
-        let page = parseInt(req.query.page) || 1;
-        const data = prodMd.getProductMakeup();
+        // let page = parseInt(req.query.page) || 1;
+        // const data = prodMd.getProductMakeup();
+        const keyword = req.query.keyword;
+
+        let data;
+        if (keyword != undefined) {
+            data = prodMd.getProductMakeupByKeyword(keyword.trim());
+        } else {
+            data = prodMd.getProductMakeup();
+        }
 
         data.then(function (product) {
             const data = {
@@ -261,8 +309,16 @@ router.get("/ctcategory/makeup", function (req, res) {
 router.get("/ctcategory/makeupcourse", function (req, res) {
     if (req.session.user && req.session.user.roleID === 0) {
         const params = req.params;
-        let page = parseInt(req.query.page) || 1;
-        const data = prodMd.getProductMakeupcourse();
+        // let page = parseInt(req.query.page) || 1;
+        // const data = prodMd.getProductMakeupcourse();
+        const keyword = req.query.keyword;
+
+        let data;
+        if (keyword != undefined) {
+            data = prodMd.getProductMakeupcourseByKeyword(keyword.trim());
+        } else {
+            data = prodMd.getProductMakeupcourse();
+        }
 
         data.then(function (product) {
             const data = {
@@ -281,8 +337,16 @@ router.get("/ctcategory/makeupcourse", function (req, res) {
 router.get("/ctcategory/makeupservice", function (req, res) {
     if (req.session.user && req.session.user.roleID === 0) {
         const params = req.params;
-        let page = parseInt(req.query.page) || 1;
-        const data = prodMd.getProductMakeupservice();
+        // let page = parseInt(req.query.page) || 1;
+        // const data = prodMd.getProductMakeupservice();
+        const keyword = req.query.keyword;
+
+        let data;
+        if (keyword != undefined) {
+            data = prodMd.getProductMakeupserviceByKeyword(keyword.trim());
+        } else {
+            data = prodMd.getProductMakeupservice();
+        }
 
         data.then(function (product) {
             const data = {
@@ -301,8 +365,16 @@ router.get("/ctcategory/makeupservice", function (req, res) {
 router.get("/ctcategory/makeuptool", function (req, res) {
     if (req.session.user && req.session.user.roleID === 0) {
         const params = req.params;
-        let page = parseInt(req.query.page) || 1;
-        const data = prodMd.getProductMakeuptool();
+        // let page = parseInt(req.query.page) || 1;
+        // const data = prodMd.getProductMakeuptool();
+        const keyword = req.query.keyword;
+
+        let data;
+        if (keyword != undefined) {
+            data = prodMd.getProductMakeuptoolByKeyword(keyword.trim());
+        } else {
+            data = prodMd.getProductMakeuptool();
+        }
 
         data.then(function (product) {
             const data = {
@@ -321,9 +393,17 @@ router.get("/ctcategory/makeuptool", function (req, res) {
 router.get("/ctcategory/perfume", function (req, res) {
     if (req.session.user && req.session.user.roleID === 0) {
         const params = req.params;
-        let page = parseInt(req.query.page) || 1;
-        const data = prodMd.getProductPerfume();
+        // let page = parseInt(req.query.page) || 1;
+        // const data = prodMd.getProductPerfume();
+        const keyword = req.query.keyword;
 
+        let data;
+        if (keyword != undefined) {
+            data = prodMd.getProductPerfumeByKeyword(keyword.trim());
+        } else {
+            data = prodMd.getProductPerfume();
+        }
+        
         data.then(function (product) {
             const data = {
                 product: product,
