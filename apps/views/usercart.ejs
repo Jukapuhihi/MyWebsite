@@ -9,7 +9,7 @@
 
     <%- include layout/head %>
 
-    <title>Đặt hàng</title>
+    <title>Giỏ hàng</title>
     <link rel="stylesheet" type="text/css" href="../../static/css/home.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/category/bodyskin.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/ctdetailprod.css">
@@ -34,14 +34,14 @@
                         <a href="/" class="nav__link">Trang chủ</a>
                     </li>
                     <li class="nav__item">
-                        <a href="#news" class="nav__link">Tin tức</a>
+                        <a href="/member/userlistnews" class="nav__link">Tin tức</a>
                     </li>
                     <li class="nav__item">
-                        <a href="#account" class="nav__link">Tài khoản</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="/member/logout" class="nav__link">Đăng xuất</a>
-                    </li>
+                            <a href="#account" class="nav__link">Tài khoản</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="/member/logout" class="nav__link">Đăng xuất</a>
+                        </li>
                 </ul>
 
                 <button type="button" id="btn-bell" class="btn btn-link">
@@ -65,21 +65,15 @@
 
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
-            <h2>Thanh toán</h2>
-            <form role="form" method="post" action="">
-                <div class="form-group">
-                    <label for="addressdeli" style="font-size: 25px;">Địa chỉ nhận hàng</label>
-                    <input class="form-control addressdeli" name="addressdeli" placeholder="Nhập địa chỉ hiện tại của bạn" value="">
-                </div>
-            </form>
             <table class="table table-hover listoncart">
-                <h3 class="table-caption" style="font-weight: bold;">Sản phẩm</h3>
+                <h3 class="table-caption">Giỏ hàng của bạn</h3>
                 <thead>
                     <tr>
                         <th>Sản phẩm</th>
                         <th>Số lượng</th>
                         <th class="text-center">Giá</th>
                         <th class="text-center">Tổng</th>
+                        <th>&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -89,28 +83,32 @@
                         <td> <%= data.cart[i].prodName%> </td>
                         <td> <%= data.cart[i].quantity%> </td>
                         <td> <%= data.cart[i].price%> </td>
-                    </tr>
+                        <td> <%= data.cart[i].totalPrice%> </td>
+                        <td style="display: flex; justify-content: space-around;">
+                            <button class="btn btn-danger cartDelete"
+                            productId="<%= data.cart[i].productId%>"> Xóa </button>
+                        </td>
+                    </tr> 
                     <%}%>
                     <%}%>
-                    <tr>
-                        <td colspan="3"></td>
-                        <td>  </td>
-                    </tr>
                 </tbody>
             </table>
         </div>
         <div class="col-sm-12 col-md-10 col-md-offset-1" style="text-align: right; margin: 3rem 1rem;">
-            <a href="#" style="height: 35px;" class="btn btn-success btn-ck"> Gửi đơn hàng </a>
+            <a style="height: 35px;"
+                class="btn btn-success btn-ck"> Tiến hành đặt hàng </a>
         </div>
     </div>
 
     <%- include layout/footer %>
-    <!-- <script src="../static/libs/owlcarousel/owl.carousel.js"></script>
+    <script src="../static/libs/owlcarousel/owl.carousel.js"></script>
     <script src="../static/libs/owlcarousel/owl.carousel.min.js"></script>
     <script src="../static/js/home.js"></script>
     <script src="../static/js/category.js"></script>
-    <script src="../static/js/ctdetailprod.js"></script> -->
-    <script src="../static/js/checkout.js"></script>
+    <script src="../static/js/ctdetailprod.js"></script>
+    <script src="../static/js/addtocart.js"></script>
+    <script src="../static/js/deletecart.js"></script>
+    <script src="../static/js/cart.js"></script>
 </body>
 
 </html>

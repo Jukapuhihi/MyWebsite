@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const userMd = require("../models/user");
+const newsMd = require("../models/news");
 const prodMd = require("../models/product");
 const helper = require("../helpers/helper");
 
@@ -437,6 +438,46 @@ router.delete("/cart/delete", function (req, res) {
     console.log('removeIndex: ', removeIndex);
 
     res.json({ status_code: 200 });
+});
+
+router.get("/ctlistnews", function (req, res) {
+    const params = req.params;
+    // const data = newsMd.getAllNews();
+    const keyword = req.query.keyword;
+
+    const data = keyword == undefined ? newsMd.getAllNews('') : newsMd.getAllNews(keyword.trim());
+
+    data.then(function (news) {
+        const data = {
+            news: news,
+            error: false
+        }
+        res.render("ctlistnews", { data: data });
+    }).catch(function (err) {
+        res.render("ctlistnews", { data: { error: "Không thể lấy danh sách tin tức!" } });
+    });
+});
+
+router.get("/ctdetailnews/:newsID", function (req, res) {
+    console.log('cart: ', req.session.cart)
+    const params = req.params;
+    const newsID = params.newsID;
+
+    const data = newsMd.getNewsByNewsID(newsID);
+    if (data) {
+        data.then(function (arrnews) {
+            const news = arrnews[0];
+            const data = {
+                news: news,
+                error: false
+            };
+            res.render("ctdetailnews", { data: data });
+        }).catch(function (err) {
+            res.render("ctdetailnews", { data: { error: "Không thể lấy dữ liệu tin tức này!"} });
+        });
+    } else {
+        res.render("ctdetailnews", { data: { error:"Không thể lấy dữ liệu tin tức này!"}});
+    }
 });
 
 module.exports = router;

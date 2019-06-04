@@ -1,0 +1,22 @@
+.listnews {
+    margin: 4rem 10rem 5rem 10rem;
+    position: relative;
+}
+.createDate, .newsContent, .newslink {
+    margin: 0 2rem;
+}
+.createDate {
+    font-size: 12px;
+    background-color: #b1aeae;
+    color: white;
+    border: 1px solid #b1aeae;
+    border-radius: 8px;
+    padding: 2px;
+}
+.newsContent {
+    text-align: justify;
+}
+.newslink {
+    position: absolute;
+    right: 1rem;
+}

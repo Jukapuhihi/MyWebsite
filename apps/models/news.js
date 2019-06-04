@@ -5,7 +5,7 @@ const conn = db.getConnection();
 
 function getAllNews(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM news WHERE newsTitle LIKE ?', ['%' + keyword + '%'], function (err, news) {
+    const query = conn.query('SELECT * FROM news WHERE newsTitle LIKE ? ORDER BY createDate DESC', ['%' + keyword + '%'], function (err, news) {
         if (err) {
             defer.reject(err);
         }

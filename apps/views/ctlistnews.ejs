@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.boostrapcdn.com/boostrap/3.3.7/css/boostrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dK68vbdEjh4u" crossorigin="anonymous">
+
+    <%- include layout/head %>
+
+    <title>Tin tức</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/home.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/category/bodyskin.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/ctdetailprod.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/ctlistnews.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/limitdata.css">
+
+</head>
+
+<body onload="init();">
+    <header class="header">
+        <nav class="nav nav--transparent">
+            <div class="container">
+
+                <div class="nav__logo">
+                    <a href="/">
+                        <img class="logo" src="https://image.flaticon.com/icons/png/512/997/997507.png" alt="logo">
+                        <img class="logo-alt" src="https://image.flaticon.com/icons/png/512/997/997507.png" alt="logo">
+                        <span class="header__pagename">Juka Cosmetic</span>
+                    </a>
+                </div>
+
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="/" class="nav__link">Trang chủ</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="/guess/ctlistnews" class="nav__link">Tin tức</a>
+                    </li>
+                </ul>
+
+                <button type="button" id="btn-cart" class="btn btn-link">
+                    <a href="/guess/cart"><i class="fas fa-shopping-cart"></i></a>
+                </button>
+
+                <div class="nav__toggler">
+                    <span class="nav__toggler-icon"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <button class="go-to-top ct-btn ct-btn--primary">
+        <i class="fas fa-angle-up"></i>
+    </button>
+
+        <%if (data && data.news) {%>
+        <%for(let i=0; i < data.news.length; i++) {%>
+        <div class="listnews">
+            <h3 class="newsheading"> <%= data.news[i].newsTitle%> </h3>
+            <span class="createDate"> <%= data.news[i].createDate%> </span>
+            <p class="newsContent limitdata"> <%= data.news[i].newsContent%> </p>
+            <a href="ctdetailnews/<%= data.news[i].newsID%>" class="newslink"> Xem thêm </a>
+        </div>
+        <%}%>
+        <%}%>
+
+    <%- include layout/footer %>
+    <script type="text/javascript" src="/static/js/home.js"></script>
+</body>
+
+</html>

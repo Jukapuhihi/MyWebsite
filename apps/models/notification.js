@@ -5,7 +5,7 @@ const conn = db.getConnection();
 
 function getAllNotification(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM notification WHERE notiTitle LIKE ?', ['%' + keyword + '%'], function (err, notification) {
+    const query = conn.query('SELECT * FROM notification WHERE notiTitle LIKE ? ORDER BY createDate DESC', ['%' + keyword + '%'], function (err, notification) {
         if (err) {
             defer.reject(err);
         }

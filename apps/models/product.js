@@ -5,7 +5,7 @@ const conn = db.getConnection();
 
 function getAllProduct(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM product WHERE productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+    const query = conn.query('SELECT * FROM product WHERE productName LIKE ? ORDER BY createDate DESC', ['%' + keyword + '%'], function (err, product) {
         if (err) {
             defer.reject(err);
         }
@@ -148,7 +148,7 @@ function getProductPerfume() {
 
 function getProductBodyskinByKeyword(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM product WHERE categoryName="Chăm sóc da toàn thân" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Chăm sóc da toàn thân" AND productName LIKE ? ORDER BY createDate DESC', ['%' + keyword + '%'], function (err, product) {
         if (err) {
             defer.reject(err);
         }
@@ -161,7 +161,7 @@ function getProductBodyskinByKeyword(keyword) {
 
 function getProductBeautyserviceByKeyword(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM product WHERE categoryName="Dịch vụ làm đẹp" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Dịch vụ làm đẹp" AND productName LIKE ? ORDER BY createDate DESC', ['%' + keyword + '%'], function (err, product) {
         if (err) {
             defer.reject(err);
         }
@@ -174,7 +174,7 @@ function getProductBeautyserviceByKeyword(keyword) {
 
 function getProductFaceskinByKeyword(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM product WHERE categoryName="Chăm sóc da mặt" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Chăm sóc da mặt" AND productName LIKE ? ORDER BY createDate DESC', ['%' + keyword + '%'], function (err, product) {
         if (err) {
             defer.reject(err);
         }
@@ -187,7 +187,7 @@ function getProductFaceskinByKeyword(keyword) {
 
 function getProductFormenByKeyword(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM product WHERE categoryName="Dành cho quý ông" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Dành cho quý ông" AND productName LIKE ? ORDER BY createDate DESC', ['%' + keyword + '%'], function (err, product) {
         if (err) {
             defer.reject(err);
         }
@@ -200,7 +200,7 @@ function getProductFormenByKeyword(keyword) {
 
 function getProductHairnailByKeyword(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM product WHERE categoryName="Chăm sóc tóc và móng" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Chăm sóc tóc và móng" AND productName LIKE ? ORDER BY createDate DESC', ['%' + keyword + '%'], function (err, product) {
         if (err) {
             defer.reject(err);
         }
@@ -213,7 +213,7 @@ function getProductHairnailByKeyword(keyword) {
 
 function getProductMakeupByKeyword(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM product WHERE categoryName="Trang điểm" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Trang điểm" AND productName LIKE ? ORDER BY createDate DESC', ['%' + keyword + '%'], function (err, product) {
         if (err) {
             defer.reject(err);
         }
@@ -226,7 +226,7 @@ function getProductMakeupByKeyword(keyword) {
 
 function getProductMakeupcourseByKeyword(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM product WHERE categoryName="Khóa học trang điểm" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Khóa học trang điểm" AND productName LIKE ? ORDER BY createDate DESC', ['%' + keyword + '%'], function (err, product) {
         if (err) {
             defer.reject(err);
         }
@@ -239,7 +239,7 @@ function getProductMakeupcourseByKeyword(keyword) {
 
 function getProductMakeupserviceByKeyword(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM product WHERE categoryName="Dịch vụ trang điểm" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Dịch vụ trang điểm" AND productName LIKE ? ORDER BY createDate DESC', ['%' + keyword + '%'], function (err, product) {
         if (err) {
             defer.reject(err);
         }
@@ -252,7 +252,7 @@ function getProductMakeupserviceByKeyword(keyword) {
 
 function getProductMakeuptoolByKeyword(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM product WHERE categoryName="Dụng cụ trang điểm" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Dụng cụ trang điểm" AND productName LIKE ? ORDER BY createDate DESC', ['%' + keyword + '%'], function (err, product) {
         if (err) {
             defer.reject(err);
         }
@@ -265,7 +265,7 @@ function getProductMakeuptoolByKeyword(keyword) {
 
 function getProductPerfumeByKeyword(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM product WHERE categoryName="Nước hoa" AND productName LIKE ?', ['%' + keyword + '%'], function (err, product) {
+    const query = conn.query('SELECT * FROM product WHERE categoryName="Nước hoa" AND productName LIKE ? ORDER BY createDate DESC', ['%' + keyword + '%'], function (err, product) {
         if (err) {
             defer.reject(err);
         }

@@ -1,0 +1,34 @@
+@import url("../reset.css");
+
+.header {
+    background-image: none;
+    min-height: 6.8rem;
+    background-color: white;
+    position: relative;
+}
+
+.header::before {
+    height: 6.8rem;
+    background-color: #031cfa57;
+    position: fixed;
+}
+
+.main {
+    font-size: 0;
+    margin: 3rem 5rem;
+    display: flex;
+}
+.content {
+    width: 100%;
+    font-size: 0;
+    margin-top: 10px 40px;
+}
+.newsTitle {
+    font-size: 25px;
+    margin: 20px 0 10px 0;
+}
+.createDate {
+    font-size: 12px;
+    font-style: italic;
+    margin-left: 20px;
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.boostrapcdn.com/boostrap/3.3.7/css/boostrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dK68vbdEjh4u" crossorigin="anonymous">
+
+    <%- include layout/head %>
+
+    <title>Xem tin tức</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/home.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/category/bodyskin.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/ctdetailnews.css">
+
+
+    <script>
+        var observe;
+        if (window.attachEvent) {
+            observe = function (element, event, handler) {
+                element.attachEvent('on' + event, handler);
+            };
+        }
+        else {
+            observe = function (element, event, handler) {
+                element.addEventListener(event, handler, false);
+            };
+        }
+        function init() {
+            var text = document.getElementById('text');
+            function resize() {
+                text.style.height = 'auto';
+                text.style.height = text.scrollHeight + 'px';
+            }
+            /* 0-timeout to get the already changed text */
+            function delayedResize() {
+                window.setTimeout(resize, 0);
+            }
+            observe(text, 'change', resize);
+            observe(text, 'cut', delayedResize);
+            observe(text, 'paste', delayedResize);
+            observe(text, 'drop', delayedResize);
+            observe(text, 'keydown', delayedResize);
+
+            text.focus();
+            text.select();
+            resize();
+        }
+    </script>
+</head>
+
+<body onload="init();">
+    <header class="header">
+        <nav class="nav nav--transparent">
+            <div class="container">
+
+                <div class="nav__logo">
+                    <a href="/">
+                        <img class="logo" src="https://image.flaticon.com/icons/png/512/997/997507.png" alt="logo">
+                        <img class="logo-alt" src="https://image.flaticon.com/icons/png/512/997/997507.png" alt="logo">
+                        <span class="header__pagename">Juka Cosmetic</span>
+                    </a>
+                </div>
+
+
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="/" class="nav__link">Trang chủ</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="/member/userlistnews" class="nav__link">Tin tức</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#account" class="nav__link">Tài khoản</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="/member/logout" class="nav__link">Đăng xuất</a>
+                    </li>
+                </ul>
+
+                <button type="button" id="btn-bell" class="btn btn-link">
+                    <a href="/member/userlistnoti"><i class="fas fa-bell"></i></a>
+                </button>
+                <button type="button" id="btn-cart" class="btn btn-link">
+                    <a href="/member/usercart"><i class="fas fa-shopping-cart"></i></a>
+                </button>
+
+                <div class="nav__toggler">
+                    <span class="nav__toggler-icon"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <button class="go-to-top ct-btn ct-btn--primary">
+        <i class="fas fa-angle-up"></i>
+    </button>
+
+    <div class="col-lg-12">
+        <input class="newsID" type="hidden" name="newsID" value="<% if(data && data.news) {%> <%= data.news.newsID %> <%}%>">
+        <% if (data && data.error){%>
+        <div id=" detailProd-alert" class="alert alert-danger col-sm-12">
+        <%= data.error %>
+    </div>
+    <%}%>
+    </div>
+
+    <div class="main">
+        <div class="content" id="news<% if (data && data.news) {%><%= data.news.newsID%><%}%>">
+            <h2 class="newsTitle" id="newsTitle"><% if (data && data.news) {%><%= data.news.newsTitle%><%}%></h2>
+            <p class="createDate">Đăng vào: <% if (data && data.news) {%><%= data.news.createDate%><%}%></p>
+            <label for="productDescribe"></label>
+            <textarea class="form-control productDescribe" id="text" name="productDescribe" 
+            style="border: 1 solid rgb(209, 207, 207); overflow: hidden; padding: 1rem; outline: none; background-color: rgb(255, 255, 255);" value=""
+                disabled><% if (data && data.news) {%><%= data.news.newsContent%><%}%></textarea>
+        </div>
+    </div>
+
+    <%- include layout/footer %>
+    <script type="text/javascript" src="/static/libs/owlcarousel/owl.carousel.js"></script>
+    <script type="text/javascript" src="/static/libs/owlcarousel/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/static/js/home.js"></script>
+    <script type="text/javascript" src="/static/js/category.js"></script>
+    <script type="text/javascript" src="/static/js/addtocart.js"></script>
+</body>
+
+</html>

@@ -57,20 +57,3 @@ function news() {
 $(document).ready(function () {
     new news();
 });
-
-$(document).on("keyup","#searchnews", function() {
-    let data = $(this).val();
-    console.log("Client nhập:" + data)
-    const baseUrl = "http://localhost:3000";
-
-    $.ajax({
-        async: false,
-        type: "POST",
-        url: baseUrl + "/manager/newsMgt/listnews/searchnews",
-        data: data,
-        cache: false,
-        success: function(res){
-           console.log("Server trả về:" + res);
-        }
-    });
-});

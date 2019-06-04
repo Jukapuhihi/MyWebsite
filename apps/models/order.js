@@ -5,7 +5,7 @@ const conn = db.getConnection();
 
 function getAllOrder(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM ordertable WHERE state LIKE ?',['%' + keyword + '%'], function (err, ordertable) {
+    const query = conn.query('SELECT * FROM ordertable WHERE state LIKE ? ORDER BY createDate DESC',['%' + keyword + '%'], function (err, ordertable) {
         if (err) {
             defer.reject(err);
         }

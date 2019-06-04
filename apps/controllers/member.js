@@ -3,6 +3,8 @@ const router = express.Router();
 
 const userMd = require("../models/user");
 const prodMd = require("../models/product");
+const newsMd = require("../models/news");
+const notiMd = require("../models/notification");
 const helper = require("../helpers/helper");
 const orderMd = require("../models/order");
 
@@ -33,9 +35,9 @@ router.get("/home", function (req, res) {
     }
 });
 
-router.get("/cart", function (req, res) {
+router.get("/usercart", function (req, res) {
     console.log('cart info: ', req.session.cart)
-    res.render("cart", { data: { cart: req.session.cart } });
+    res.render("usercart", { data: { cart: req.session.cart } });
 });
 
 router.get("/checkout", function (req, res) {
@@ -469,6 +471,91 @@ router.get("/logout", function (req, res) {
         return res.status(200).send();
     } else {
         res.redirect("/home");
+    }
+});
+
+router.get("/userlistnews", function (req, res) {
+    if (req.session.user && req.session.user.roleID === 0) {
+    const params = req.params;
+    // const data = newsMd.getAllNews();
+    const keyword = req.query.keyword;
+
+    const data = keyword == undefined ? newsMd.getAllNews('') : newsMd.getAllNews(keyword.trim());
+
+    data.then(function (news) {
+        const data = {
+            news: news,
+            error: false
+        }
+        res.render("userlistnews", { data: data });
+    }).catch(function (err) {
+        res.render("userlistnews", { data: { error: "Không thể lấy danh sách tin tức!" } });
+    });
+    } else {
+        res.redirect("/guess/signin");
+    }
+});
+
+router.get("/userdetailnews/:newsID", function (req, res) {
+    const params = req.params;
+    const newsID = params.newsID;
+
+    const data = newsMd.getNewsByNewsID(newsID);
+    if (data) {
+        data.then(function (arrnews) {
+            const news = arrnews[0];
+            const data = {
+                news: news,
+                error: false
+            };
+            res.render("userdetailnews", { data: data });
+        }).catch(function (err) {
+            res.render("userdetailnews", { data: { error: "Không thể lấy dữ liệu tin tức này!"} });
+        });
+    } else {
+        res.render("userdetailnews", { data: { error:"Không thể lấy dữ liệu tin tức này!"}});
+    }
+});
+
+router.get("/userlistnoti", function (req, res) {
+    if (req.session.user && req.session.user.roleID === 0) {
+    const params = req.params;
+    const keyword = req.query.keyword;
+
+    const data = keyword == undefined ? notiMd.getAllNotification('') : notiMd.getAllNotification(keyword.trim());
+
+    data.then(function (notification) {
+        const data = {
+            notification: notification,
+            error: false
+        }
+        res.render("userlistnoti", { data: data });
+    }).catch(function (err) {
+        res.render("userlistnoti", { data: { error: "Không thể lấy danh sách thông báo!" } });
+    });
+    } else {
+        res.redirect("/guess/signin");
+    }
+});
+
+router.get("/userdetailnoti/:notiID", function (req, res) {
+    const params = req.params;
+    const notiID = params.notiID;
+
+    const data = notiMd.getNotificationByNotificationID(notiID);
+    if (data) {
+        data.then(function (arrnoti) {
+            const notification = arrnoti[0];
+            const data = {
+                notification: notification,
+                error: false
+            };
+            res.render("userdetailnoti", { data: data });
+        }).catch(function (err) {
+            res.render("userdetailnoti", { data: { error: "Không thể lấy dữ liệu thông báo này!"} });
+        });
+    } else {
+        res.render("userdetailnoti", { data: { error:"Không thể lấy dữ liệu thông báo này!"}});
     }
 });
 

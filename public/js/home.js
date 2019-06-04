@@ -36,23 +36,6 @@ $(document).ready(function () {
         }, 1000);
     })
 
-    // $("a").click(function(event) {
-    //     event.preventDefault(); // prevent load page, change location (url) => ko có hash trên url
-    //     const hash = this.hash;
-    //     $("body, html").animate({
-    //         scrollTop: $(hash).offset().top
-    //     }, 600);
-    //     // thêm hash cho location
-    //     location.hash = hash;
-
-    //     // loại đi thằng đang nắm active class
-    //     $(".nav__item").removeClass("nav__item--active"); // ko còn thằng nav__item nà nắm activee
-
-    //     // thêm class active cho thằng mình mới click
-    //     // thằng hiện tại đang chọn là thằng a, nhưng mình muốn thêm active cho thằng cha (nav__item)
-    //     $(this).parent().addClass("nav__item--active");
-    // });
-
     function onWindowScroll() {
         if (wd.scrollTop() <= 60) {
             $(".header__pagename").css("color", "white");

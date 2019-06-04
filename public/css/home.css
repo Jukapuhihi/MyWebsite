@@ -61,7 +61,7 @@ img {
 
 
 
-#btn-cart {
+#btn-cart, #btn-bell {
     height: 3rem;
     margin-left: 1.5rem;
     margin-bottom: 1rem;
@@ -72,7 +72,11 @@ img {
     font-size: 3rem;
     color: var(--primary);
 }
-#btn-cart i:hover {
+#btn-bell i {
+    font-size: 3rem;
+    color: white;
+}
+#btn-cart i:hover, #btn-bell i:hover {
     color: var(--itembg);
 }
 #btn-cart:after {
