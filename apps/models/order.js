@@ -48,6 +48,22 @@ function getOrderByOrderID(orderID) {
     return false;
 }
 
+function getOrderByUserID(userID) {
+    if (userID) {
+        const defer = q.defer();
+        const query = conn.query('SELECT * FROM ordertable WHERE ?', { userID: userID }, function (err, result) {
+            if (err) {
+                defer.reject(err);
+            }
+            else {
+                defer.resolve(result);
+            }
+        });
+        return defer.promise;
+    }
+    return false;
+}
+
 function updateOrder(params) {
     if (params) {
         const defer = q.defer();
@@ -85,5 +101,6 @@ module.exports = {
     addOrder: addOrder,
     getOrderByOrderID: getOrderByOrderID,
     updateOrder: updateOrder,
-    deleteOrder: deleteOrder
+    deleteOrder: deleteOrder,
+    getOrderByUserID
 }

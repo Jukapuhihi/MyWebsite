@@ -35,6 +35,28 @@ router.get("/home", function (req, res) {
     }
 });
 
+router.get("/userlistprod", function (req, res) {
+    if (req.session.user && req.session.user.roleID === 0) {
+        const params = req.params;
+        let page = parseInt(req.query.page) || 1;
+        const keyword = req.query.keyword;
+
+        const data = keyword == undefined ? prodMd.getAllProduct('') : prodMd.getAllProduct(keyword.trim());
+
+        data.then(function (product) {
+            const data = {
+                product: product,
+                error: false
+            }
+            res.render("userlistprod", { data: data });
+        }).catch(function (err) {
+            res.render("userlistprod", { data: { error: "Không thể lấy danh sách sản phẩm!" } });
+        });
+    } else {
+        res.redirect("/guess/signin");
+    }
+});
+
 router.get("/usercart", function (req, res) {
     console.log('cart info: ', req.session.cart)
     res.render("usercart", { data: { cart: req.session.cart } });
@@ -42,7 +64,7 @@ router.get("/usercart", function (req, res) {
 
 router.get("/checkout", function (req, res) {
     if (req.session.user && req.session.user.roleID === 0) {
-        res.render("checkout", { data: {cart:  req.session.cart} });
+        res.render("checkout", { data: { cart: req.session.cart } });
     } else {
         res.redirect("/guess/signin");
     }
@@ -51,18 +73,18 @@ router.get("/checkout", function (req, res) {
 const checkProductIsValid = (productId, request_quantity) => {
     return new Promise((resolve, reject) => {
         prodMd.getProductByProductID(productId)
-        .then((result) => {
-            const product = result[0]
-            // return reject(new Error('Sản phẩm ' + result.productName + ' không đủ số lượng đặt hàng'));
-            if (product.quantity < request_quantity) {
-                console.log('Khong du so luong')
-                // return reject(new Error('Sản phẩm ' + product.productName + ' không đủ số lượng đặt hàng'))
-                return reject({
-                    message: 'Sản phẩm ' + product.productName + ' không đủ số lượng đặt hàng',
-                });
-            }
-            return resolve({})
-        })
+            .then((result) => {
+                const product = result[0]
+                // return reject(new Error('Sản phẩm ' + result.productName + ' không đủ số lượng đặt hàng'));
+                if (product.quantity < request_quantity) {
+                    console.log('Khong du so luong')
+                    // return reject(new Error('Sản phẩm ' + product.productName + ' không đủ số lượng đặt hàng'))
+                    return reject({
+                        message: 'Sản phẩm ' + product.productName + ' không đủ số lượng đặt hàng',
+                    });
+                }
+                return resolve({})
+            })
     })
 }
 
@@ -76,60 +98,60 @@ router.post("/checkout", function (req, res) {
         return checkProductIsValid(item.productId, item.quantity);
     })
     Promise.all(arrPromise)
-    .then((results) => {
-        return res.json({ status_code: 200 })
-    })
-    .then(() => {
-        // Nếu các sản phảm đều đủ, tiến hành đặt hàng
-        // return;
-        let totalPrice = 0;
-        const cart = req.session.cart.map((item) => {
-            totalPrice += parseInt(item.price) * item.quantity;
-            return {
-                productId: item.productId,
-                quantity: item.quantity,
-                prodName: item.prodName,
-                price: item.price,
-            }
-        });
-        const address = req.body.address;
-        // console.log('cart: ', cart);
-        // console.log('user: ', req.session.user);
-
-        const params = {
-            state: 'Chờ xử lý',
-            userID: parseInt(req.session.user.userID),
-            listprod: JSON.stringify(cart),
-            createDate: new Date(),
-            totalPrice: totalPrice,
-        }
-        console.log('address: ', address)
-        if (address != undefined) {
-            orderMd.addOrder(params)
-            .then(function (result) {
-                const arrPromise2 = req.session.cart.map((item) => {
-                    return prodMd.decreaseProduct(item.productId, item.quantity);
-                })
-                return Promise.all(arrPromise2)            
-            })
-            .then(function () {
-                req.session.cart = []
-                res.json({ status_code: 200 });
-            })
-            .catch(function (error) {
-                // console.log('error: ', error);
-                res.json({ status_code: 500, message: error.message });
+        .then((results) => {
+            return res.json({ status_code: 200 })
+        })
+        .then(() => {
+            // Nếu các sản phảm đều đủ, tiến hành đặt hàng
+            // return;
+            let totalPrice = 0;
+            const cart = req.session.cart.map((item) => {
+                totalPrice += parseInt(item.price) * item.quantity;
+                return {
+                    productId: item.productId,
+                    quantity: item.quantity,
+                    prodName: item.prodName,
+                    price: item.price,
+                }
             });
-        } else {
-            res.json({ status_code: 500 });
-        }
-    })
-    .catch((err) => {
-        console.log(err)
-        return res.json({ status_code: 500, message: err.message })
-    })
+            const address = req.body.address;
+            // console.log('cart: ', cart);
+            // console.log('user: ', req.session.user);
 
-       
+            const params = {
+                state: 'Chờ xử lý',
+                userID: parseInt(req.session.user.userID),
+                listprod: JSON.stringify(cart),
+                createDate: new Date(),
+                totalPrice: totalPrice,
+            }
+            console.log('address: ', address)
+            if (address != undefined) {
+                orderMd.addOrder(params)
+                    .then(function (result) {
+                        const arrPromise2 = req.session.cart.map((item) => {
+                            return prodMd.decreaseProduct(item.productId, item.quantity);
+                        })
+                        return Promise.all(arrPromise2)
+                    })
+                    .then(function () {
+                        req.session.cart = []
+                        res.json({ status_code: 200 });
+                    })
+                    .catch(function (error) {
+                        // console.log('error: ', error);
+                        res.json({ status_code: 500, message: error.message });
+                    });
+            } else {
+                res.json({ status_code: 500 });
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+            return res.json({ status_code: 500, message: err.message })
+        })
+
+
 });
 
 router.get("/accMgt/editprofile", function (req, res) {
@@ -405,7 +427,7 @@ router.get("/ctcategory/perfume", function (req, res) {
         } else {
             data = prodMd.getProductPerfume();
         }
-        
+
         data.then(function (product) {
             const data = {
                 product: product,
@@ -476,86 +498,159 @@ router.get("/logout", function (req, res) {
 
 router.get("/userlistnews", function (req, res) {
     if (req.session.user && req.session.user.roleID === 0) {
-    const params = req.params;
-    // const data = newsMd.getAllNews();
-    const keyword = req.query.keyword;
+        const params = req.params;
+        // const data = newsMd.getAllNews();
+        const keyword = req.query.keyword;
 
-    const data = keyword == undefined ? newsMd.getAllNews('') : newsMd.getAllNews(keyword.trim());
+        const data = keyword == undefined ? newsMd.getAllNews('') : newsMd.getAllNews(keyword.trim());
 
-    data.then(function (news) {
-        const data = {
-            news: news,
-            error: false
-        }
-        res.render("userlistnews", { data: data });
-    }).catch(function (err) {
-        res.render("userlistnews", { data: { error: "Không thể lấy danh sách tin tức!" } });
-    });
+        data.then(function (news) {
+            const data = {
+                news: news,
+                error: false
+            }
+            res.render("userlistnews", { data: data });
+        }).catch(function (err) {
+            res.render("userlistnews", { data: { error: "Không thể lấy danh sách tin tức!" } });
+        });
     } else {
         res.redirect("/guess/signin");
     }
 });
 
 router.get("/userdetailnews/:newsID", function (req, res) {
-    const params = req.params;
-    const newsID = params.newsID;
+    if (req.session.user && req.session.user.roleID === 0) {
+        const params = req.params;
+        const newsID = params.newsID;
 
-    const data = newsMd.getNewsByNewsID(newsID);
-    if (data) {
-        data.then(function (arrnews) {
-            const news = arrnews[0];
-            const data = {
-                news: news,
-                error: false
-            };
-            res.render("userdetailnews", { data: data });
-        }).catch(function (err) {
-            res.render("userdetailnews", { data: { error: "Không thể lấy dữ liệu tin tức này!"} });
-        });
+        const data = newsMd.getNewsByNewsID(newsID);
+        if (data) {
+            data.then(function (arrnews) {
+                const news = arrnews[0];
+                const data = {
+                    news: news,
+                    error: false
+                };
+                res.render("userdetailnews", { data: data });
+            }).catch(function (err) {
+                res.render("userdetailnews", { data: { error: "Không thể lấy dữ liệu tin tức này!" } });
+            });
+        } else {
+            res.render("userdetailnews", { data: { error: "Không thể lấy dữ liệu tin tức này!" } });
+        }
     } else {
-        res.render("userdetailnews", { data: { error:"Không thể lấy dữ liệu tin tức này!"}});
+        res.redirect("/guess/signin");
     }
 });
 
 router.get("/userlistnoti", function (req, res) {
     if (req.session.user && req.session.user.roleID === 0) {
-    const params = req.params;
-    const keyword = req.query.keyword;
+        const params = req.params;
+        const keyword = req.query.keyword;
 
-    const data = keyword == undefined ? notiMd.getAllNotification('') : notiMd.getAllNotification(keyword.trim());
+        const data = keyword == undefined ? notiMd.getAllNotification('') : notiMd.getAllNotification(keyword.trim());
 
-    data.then(function (notification) {
-        const data = {
-            notification: notification,
-            error: false
-        }
-        res.render("userlistnoti", { data: data });
-    }).catch(function (err) {
-        res.render("userlistnoti", { data: { error: "Không thể lấy danh sách thông báo!" } });
-    });
+        data.then(function (notification) {
+            const data = {
+                notification: notification,
+                error: false
+            }
+            res.render("userlistnoti", { data: data });
+        }).catch(function (err) {
+            res.render("userlistnoti", { data: { error: "Không thể lấy danh sách thông báo!" } });
+        });
     } else {
         res.redirect("/guess/signin");
     }
 });
 
 router.get("/userdetailnoti/:notiID", function (req, res) {
-    const params = req.params;
-    const notiID = params.notiID;
+    if (req.session.user && req.session.user.roleID === 0) {
+        const params = req.params;
+        const notiID = params.notiID;
 
-    const data = notiMd.getNotificationByNotificationID(notiID);
-    if (data) {
-        data.then(function (arrnoti) {
-            const notification = arrnoti[0];
+        const data = notiMd.getNotificationByNotificationID(notiID);
+        if (data) {
+            data.then(function (arrnoti) {
+                const notification = arrnoti[0];
+                const data = {
+                    notification: notification,
+                    error: false
+                };
+                res.render("userdetailnoti", { data: data });
+            }).catch(function (err) {
+                res.render("userdetailnoti", { data: { error: "Không thể lấy dữ liệu thông báo này!" } });
+            });
+        } else {
+            res.render("userdetailnoti", { data: { error: "Không thể lấy dữ liệu thông báo này!" } });
+        }
+    } else {
+        res.redirect("/guess/signin");
+    }
+});
+
+router.get("/userlistorder", function (req, res) {
+    if (req.session.user && req.session.user.roleID === 0) {
+        const params = req.params;
+        const userID = req.session.user.userID;
+        // const keyword = req.query.keyword;
+
+        // const data = keyword == undefined ? orderMd.getAllOrder('') : notiMd.getAllOrder(keyword.trim());
+        const data = orderMd.getOrderByUserID(userID)
+
+        data.then(function (ordertable) {
             const data = {
-                notification: notification,
+                ordertable: ordertable,
                 error: false
-            };
-            res.render("userdetailnoti", { data: data });
+            }
+            res.render("userlistorder", { data: data });
         }).catch(function (err) {
-            res.render("userdetailnoti", { data: { error: "Không thể lấy dữ liệu thông báo này!"} });
+            res.render("userlistorder", { data: { error: "Không thể lấy danh sách đơn mua!" } });
         });
     } else {
-        res.render("userdetailnoti", { data: { error:"Không thể lấy dữ liệu thông báo này!"}});
+        res.redirect("/guess/signin");
+    }
+});
+
+router.get("/userdetailorder/:orderID", function (req, res) {
+    if (req.session.user && req.session.user.roleID === 0) {
+        const params = req.params;
+        const orderID = params.orderID;
+
+        const data = orderMd.getOrderByOrderID(orderID);
+        if (data) {
+            data.then(function (arrorder) {
+                const ordertable = arrorder[0];
+                const data = {
+                    ordertable: ordertable,
+                    error: false
+                };
+                res.render("userdetailorder", { data: data });
+            }).catch(function (err) {
+                res.render("userdetailorder", { data: { error: "Không thể lấy dữ liệu thông báo này!" } });
+            });
+        } else {
+            res.render("userdetailorder", { data: { error: "Không thể lấy dữ liệu thông báo này!" } });
+        }
+    } else {
+        res.redirect("/guess/signin");
+    }
+});
+
+router.put("/userdetailorder", function (req, res) {
+    const params = req.body;
+    console.log('params', params);
+    data = orderMd.updateOrder(params);
+
+    if (!data) {
+        res.json({ status_code: 500 });
+    }
+    else {
+        data.then(function (result) {
+            res.json({ status_code: 200 });
+        }).catch(function (err) {
+            res.json({ status_code: 500 });
+        });
     }
 });
 

@@ -14,6 +14,8 @@ $(document).ready(function () {
         dotsClass: "dots",
         slideSpeed: 300
     });
+    // let count = $("td.quantity").text();
+    // $("#btn-cart").attr('data-content', count);
 });
 
 $(document).ready(function () {

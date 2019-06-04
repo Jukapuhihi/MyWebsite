@@ -73,7 +73,7 @@
                     <% for(let i=0; i < data.cart.length; i++){%>
                     <tr>
                         <td> <%= data.cart[i].prodName%> </td>
-                        <td> <%= data.cart[i].quantity%> </td>
+                        <td class="quantity"> <%= data.cart[i].quantity%> </td>
                         <td> <%= data.cart[i].price%> </td>
                         <td> <%= data.cart[i].totalPrice%> </td>
                         <td style="display: flex; justify-content: space-around;">

@@ -5,17 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    <link rel="stylesheet" href="https://maxcdn.boostrapcdn.com/boostrap/3.3.7/css/boostrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dK68vbdEjh4u" crossorigin="anonymous">
 
     <%- include layout/head %>
 
-    <title>Đặt hàng</title>
+    <title>Quản lý đơn mua</title>
     <link rel="stylesheet" type="text/css" href="../../static/css/home.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/category/bodyskin.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/ctdetailprod.css">
+
 </head>
 
-<body>
+<body onload="init();">
     <header class="header">
         <nav class="nav nav--transparent">
             <div class="container">
@@ -28,7 +30,6 @@
                     </a>
                 </div>
 
-
                 <ul class="nav__list">
                     <li class="nav__item">
                         <a href="/" class="nav__link">Trang chủ</a>
@@ -37,7 +38,7 @@
                         <a href="/member/userlistnews" class="nav__link">Tin tức</a>
                     </li>
                     <li class="nav__item">
-                        <a href="/member/userlistorder" class="nav__link">Quản lý đơn mua</a>
+                            <a href="/member/userlistorder" class="nav__link">Quản lý đơn mua</a>
                     </li>
                     <li class="nav__item">
                         <a href="/member/logout" class="nav__link">Đăng xuất</a>
@@ -63,54 +64,20 @@
     </button>
 
 
-    <div class="row">
-        <div class="col-sm-12 col-md-10 col-md-offset-1">
-            <h2>Thanh toán</h2>
-            <form role="form" method="post" action="">
-                <div class="form-group">
-                    <label for="addressdeli" style="font-size: 25px;">Địa chỉ nhận hàng</label>
-                    <input class="form-control addressdeli" name="addressdeli" placeholder="Nhập địa chỉ hiện tại của bạn" value="">
-                </div>
-            </form>
-            <table class="table table-hover listoncart">
-                <h3 class="table-caption" style="font-weight: bold;">Sản phẩm</h3>
-                <thead>
-                    <tr>
-                        <th>Sản phẩm</th>
-                        <th>Số lượng</th>
-                        <th class="text-center">Giá</th>
-                        <th class="text-center">Tổng</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% if(data && data.cart) {%>
-                    <% for(let i=0; i < data.cart.length; i++){%>
-                    <tr>
-                        <td> <%= data.cart[i].prodName%> </td>
-                        <td> <%= data.cart[i].quantity%> </td>
-                        <td> <%= data.cart[i].price%> </td>
-                    </tr>
-                    <%}%>
-                    <%}%>
-                    <tr>
-                        <td colspan="3"></td>
-                        <td>  </td>
-                    </tr>
-                </tbody>
-            </table>
+        <%if (data && data.ordertable) {%>
+        <%for(let i=0; i < data.ordertable.length; i++) {%>
+        <div class="listorder" style="margin: 5rem 10rem 5rem 20rem;">
+            <h3 class="orderID"> Mã đơn hàng: <%= data.ordertable[i].orderID%> </h3>
+            <p class="state" style="margin: 1rem 0 0 1rem; color: tomato;"> <span style="color: black;">Trạng thái:</span> <%= data.ordertable[i].state%> </p>
+            <span class="createDate" style="font-size: 12px; margin-left: 1rem;"> Ngày tạo: <%= data.ordertable[i].createDate%> </span>
+            <p class="listprod" style="margin-top: 1rem;"> <%= data.ordertable[i].listprod%> </p>
+            <a href="userdetailorder/<%= data.ordertable[i].orderID%>" class="btn btn-success"> Xem đơn hàng </a>
         </div>
-        <div class="col-sm-12 col-md-10 col-md-offset-1" style="text-align: right; margin: 3rem 1rem;">
-            <a href="#" style="height: 35px;" class="btn btn-success btn-ck"> Gửi đơn hàng </a>
-        </div>
-    </div>
+        <%}%>
+        <%}%>
 
     <%- include layout/footer %>
-    <!-- <script src="../static/libs/owlcarousel/owl.carousel.js"></script>
-    <script src="../static/libs/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../static/js/home.js"></script>
-    <script src="../static/js/category.js"></script>
-    <script src="../static/js/ctdetailprod.js"></script> -->
-    <script src="../static/js/checkout.js"></script>
+    <script type="text/javascript" src="/static/js/home.js"></script>
 </body>
 
 </html>

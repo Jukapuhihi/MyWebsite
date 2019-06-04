@@ -79,10 +79,10 @@ img {
 #btn-cart i:hover, #btn-bell i:hover {
     color: var(--itembg);
 }
-#btn-cart:after {
+/* #btn-cart:after {
     position: absolute;
     display: block;
-    content: '0';
+    content: attr(data-content);
     top: 0;
     left: 70%;
     width: 2rem;
@@ -91,7 +91,7 @@ img {
     border-radius: 50% 50%;
     color: white;
     background-color: tomato;
-}
+} */
 
 
 /* category */

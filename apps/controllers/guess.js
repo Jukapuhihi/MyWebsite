@@ -15,6 +15,24 @@ router.get("/", function (req, res) {
     };
 });
 
+router.get("/ctlistprod", function (req, res) {
+        const params = req.params;
+        let page = parseInt(req.query.page) || 1;
+        const keyword = req.query.keyword;
+
+        const data = keyword == undefined ? prodMd.getAllProduct('') : prodMd.getAllProduct(keyword.trim());
+
+        data.then(function (product) {
+            const data = {
+                product: product,
+                error: false
+            }
+            res.render("ctlistprod", { data: data });
+        }).catch(function (err) {
+            res.render("ctlistprod", { data: { error: "Không thể lấy danh sách sản phẩm!" } });
+        });
+});
+
 router.get("/category/bodyskin", function(req, res){
     const params = req.params;
 

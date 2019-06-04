@@ -1,7 +1,7 @@
+
 $(document).ready(function () {
-    
+    // let count = 0;
     $('.addtocart').on('click', function () {
-        // location.reload();
         let prodID = $(this).attr("productID");
         let pName = $('#prod' + prodID).children('#productName').text();
         let price = $('#prod' + prodID).children('#prodPrice').text();
@@ -26,5 +26,6 @@ $(document).ready(function () {
 
             }
         });
+        location.reload();
     });
 });

@@ -10,10 +10,9 @@
 
     <%- include layout/head %>
 
-    <title>Xem tin tức</title>
+    <title>Xem đơn mua</title>
     <link rel="stylesheet" type="text/css" href="../../static/css/home.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/category/bodyskin.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/ctdetailnews.css">
 
 
     <script>
@@ -92,38 +91,83 @@
                 </div>
             </div>
         </nav>
+
+        <div class="header__content" id="home" style="position: relative;">
+                <h1 class="header__title">Thức tỉnh vẻ đẹp tự nhiên</h1>
+                <p class="header__para">Hãy đến với chúng tôi để thức tỉnh vẻ đẹp tự nhiên và giữ cho vẻ đẹp ấy trường tồn cùng
+                    thời gian!</br> Chúng tôi muốn
+                    giúp đỡ bạn thực hiện những mong ước về diện mạo xinh đẹp và lấy lại vẻ trẻ trung, năng động, tự tin đối
+                    diện với
+                    cuộc sống muôn màu!</p>
+                <form class="header__form" action="">
+                    <div class="form-group form-search">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control input__search" name="keyword" placeholder="Nhập từ khóa">
+                        </div>
+                        <button type="submit" id="btn-search" class="btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+        
+                    </div>
+                </form>
+            </div>
     </header>
 
     <button class="go-to-top ct-btn ct-btn--primary">
         <i class="fas fa-angle-up"></i>
     </button>
 
-    <div class="col-lg-12">
-        <input class="newsID" type="hidden" name="newsID" value="<% if(data && data.news) {%> <%= data.news.newsID %> <%}%>">
-        <% if (data && data.error){%>
-        <div id=" detailProd-alert" class="alert alert-danger col-sm-12">
-        <%= data.error %>
-    </div>
-    <%}%>
-    </div>
+    <div class="panel-body" style="margin: 3rem 10rem;">
+        <div class="row">
+            <div class="col-lg-12">
 
-    <div class="main">
-        <div class="content" id="news<% if (data && data.news) {%><%= data.news.newsID%><%}%>">
-            <h2 class="newsTitle" id="newsTitle"><% if (data && data.news) {%><%= data.news.newsTitle%><%}%></h2>
-            <p class="createDate">Đăng vào: <% if (data && data.news) {%><%= data.news.createDate%><%}%></p>
-            <label for="productDescribe"></label>
-            <textarea class="form-control productDescribe" id="text" name="productDescribe" 
-            style="border: 1 solid rgb(209, 207, 207); overflow: hidden; padding: 1rem; outline: none; background-color: rgb(255, 255, 255);" value=""
-                disabled><% if (data && data.news) {%><%= data.news.newsContent%><%}%></textarea>
+                <input class="orderID" type="hidden" name="orderID" value="<% if(data && data.ordertable) {%> <%= data.ordertable.orderID %> <%}%>">
+
+                <% if (data && data.error){%>
+                <div id=" editOrder-alert" class="alert alert-danger col-sm-12">
+                <%= data.error %>
+            </div>
+            <%}%>
+                    
+                <form role="form" method="" action="">
+
+                    <div class="form-group">
+                        <label for="createDate">Ngày tạo</label>
+                        <input class="form-control createDate" name="createDate" placeholder="Nhập ngày tạo" value="<% if (data && data.ordertable) {%><%= data.ordertable.createDate%><%}%>" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="listprod">Danh sách sản phẩm</label>
+                        <textarea class="form-control listprod limitdata" name="listprod" rows="10" id="text"
+                            placeholder="Nhập danh sách!" value="" disabled><%if(data && data.ordertable){%><%= data.ordertable.listprod%><%}%></textarea>
+                    </div>
+
+                    <div class="form-group" style="display: none;">
+                        <label for="state" class="col-md-3 control-label ">Trạng thái</label>
+                            <select name="state" id="state" class="form-control state">
+                                <option value="Đã hủy">Đã hủy</option>
+                            </select>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 3rem;">
+                        <a >
+                            <input class="btn btn-success orderdestroy" type="button" name="" value="Hủy đơn hàng">
+                        </a>
+                        <a href="/member/userlistorder">
+                            <input class="btn btn-primary orderdetail" type="button" name="" value="Cancel">
+                        </a>
+                    </div>
+
+                </form>
+            </div>
         </div>
+        <!-- /.row (nested) -->
     </div>
 
     <%- include layout/footer %>
-    <script type="text/javascript" src="/static/libs/owlcarousel/owl.carousel.js"></script>
-    <script type="text/javascript" src="/static/libs/owlcarousel/owl.carousel.min.js"></script>
     <script type="text/javascript" src="/static/js/home.js"></script>
-    <script type="text/javascript" src="/static/js/category.js"></script>
-    <script type="text/javascript" src="/static/js/addtocart.js"></script>
+    <!-- <script type="text/javascript" src="/static/js/orderMgt.js"></script> -->
+    <script type="text/javascript" src="/static/js/destroyorder.js"></script>
 </body>
 
 </html>
