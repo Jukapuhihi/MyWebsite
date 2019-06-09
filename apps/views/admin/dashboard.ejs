@@ -81,9 +81,9 @@
                                             <td> <%= data.user[i].createDate%> </td>
                                             <td> <%= data.user[i].roleID%> </td>
                                             <td style="display: flex; justify-content: space-around;">
-                                                <a href="admin/userMgt/detailuser/<%= data.user[i].userID%>"
+                                                <a href="/admin/userMgt/detailuser/<%= data.user[i].userID%>"
                                                     class="btn btn-primary btn-detail"> Xem </a>
-                                                <a href="admin/userMgt/edituser/<%= data.user[i].userID%>"
+                                                <a href="/admin/userMgt/edituser/<%= data.user[i].userID%>"
                                                     class="btn btn-success btn-edit"> Sửa </a>
                                                 <button class="btn btn-danger userDelete"
                                                     userID="<%= data.user[i].userID%> "> Xóa </button>

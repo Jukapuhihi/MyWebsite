@@ -5,7 +5,7 @@ const conn = db.getConnection();
 
 function getAllOrder(keyword) {
     const defer = q.defer();
-    const query = conn.query('SELECT * FROM ordertable WHERE state LIKE ? ORDER BY createDate DESC',['%' + keyword + '%'], function (err, ordertable) {
+    const query = conn.query('SELECT * FROM ordertable WHERE state LIKE ? ORDER BY createDate ASC',['%' + keyword + '%'], function (err, ordertable) {
         if (err) {
             defer.reject(err);
         }
@@ -35,7 +35,7 @@ function addOrder(params) {
 function getOrderByOrderID(orderID) {
     if (orderID) {
         const defer = q.defer();
-        const query = conn.query('SELECT * FROM ordertable WHERE ?', { orderID: orderID }, function (err, result) {
+        const query = conn.query('SELECT * FROM ordertable WHERE ? ORDER BY createDate DESC', { orderID: orderID }, function (err, result) {
             if (err) {
                 defer.reject(err);
             }
@@ -51,7 +51,7 @@ function getOrderByOrderID(orderID) {
 function getOrderByUserID(userID) {
     if (userID) {
         const defer = q.defer();
-        const query = conn.query('SELECT * FROM ordertable WHERE ?', { userID: userID }, function (err, result) {
+        const query = conn.query('SELECT * FROM ordertable WHERE ? ORDER BY createDate DESC', { userID: userID }, function (err, result) {
             if (err) {
                 defer.reject(err);
             }

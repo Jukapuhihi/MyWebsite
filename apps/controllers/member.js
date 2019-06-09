@@ -603,6 +603,21 @@ router.get("/userlistorder", function (req, res) {
                 ordertable: ordertable,
                 error: false
             }
+            console.log("danh sach", data);
+            data.ordertable.forEach(element => {
+                element.listprod = element.listprod.replace(/"/g, "");
+                element.listprod = element.listprod.replace(/\[/g, "");
+                element.listprod = element.listprod.replace(/\]/g, "");
+                element.listprod = element.listprod.replace(/{/g, "");
+                element.listprod = element.listprod.replace(/},/g, "\n");
+                element.listprod = element.listprod.replace(/}/g, "\n");
+                element.listprod = element.listprod.replace(/,/g, ",  ");
+                element.listprod = element.listprod.replace(/:/g, ": ");
+                element.listprod = element.listprod.replace(/productId/g, "Mã sản phẩm");
+                element.listprod = element.listprod.replace(/quantity/g, "Số lượng mua");
+                element.listprod = element.listprod.replace(/prodName/g, "Tên sản phẩm");
+                element.listprod = element.listprod.replace(/price/g, "Giá");
+            });
             res.render("userlistorder", { data: data });
         }).catch(function (err) {
             res.render("userlistorder", { data: { error: "Không thể lấy danh sách đơn mua!" } });
@@ -625,12 +640,25 @@ router.get("/userdetailorder/:orderID", function (req, res) {
                     ordertable: ordertable,
                     error: false
                 };
+                console.log("data đây", data);
+                data.ordertable.listprod = data.ordertable.listprod.replace(/"/g, "");
+                data.ordertable.listprod = data.ordertable.listprod.replace(/\[/g, "");
+                data.ordertable.listprod = data.ordertable.listprod.replace(/\]/g, "");
+                data.ordertable.listprod = data.ordertable.listprod.replace(/{/g, "");
+                data.ordertable.listprod = data.ordertable.listprod.replace(/},/g, "\n");
+                data.ordertable.listprod = data.ordertable.listprod.replace(/}/g, "\n");
+                data.ordertable.listprod = data.ordertable.listprod.replace(/,/g, ",  ");
+                data.ordertable.listprod = data.ordertable.listprod.replace(/:/g, ": ");
+                data.ordertable.listprod = data.ordertable.listprod.replace(/productId/g, "Mã sản phẩm");
+                data.ordertable.listprod = data.ordertable.listprod.replace(/quantity/g, "Số lượng mua");
+                data.ordertable.listprod = data.ordertable.listprod.replace(/prodName/g, "Tên sản phẩm");
+                data.ordertable.listprod = data.ordertable.listprod.replace(/price/g, "Giá");
                 res.render("userdetailorder", { data: data });
             }).catch(function (err) {
-                res.render("userdetailorder", { data: { error: "Không thể lấy dữ liệu thông báo này!" } });
+                res.render("userdetailorder", { data: { error: "Không thể lấy dữ liệu đơn hàng này!" } });
             });
         } else {
-            res.render("userdetailorder", { data: { error: "Không thể lấy dữ liệu thông báo này!" } });
+            res.render("userdetailorder", { data: { error: "Không thể lấy dữ liệu đơn hàng này!" } });
         }
     } else {
         res.redirect("/guess/signin");
