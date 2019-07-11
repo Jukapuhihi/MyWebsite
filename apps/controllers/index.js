@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.use("/admin", require(__dirname + "/admin"));
 router.use("/member", require(__dirname + "/member"));
-router.use("/guess", require(__dirname + "/guess"));
+router.use("/guest", require(__dirname + "/guest"));
 router.use("/manager", require(__dirname + "/manager"));
 
 router.get("/", function(req, res){

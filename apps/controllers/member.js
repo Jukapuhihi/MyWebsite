@@ -31,7 +31,7 @@ router.get("/home", function (req, res) {
             res.render("member/home", { data: { error: "Đăng nhập thất bại, vui lòng đăng nhập lại!" } });
         }
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -53,7 +53,7 @@ router.get("/userlistprod", function (req, res) {
             res.render("userlistprod", { data: { error: "Không thể lấy danh sách sản phẩm!" } });
         });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -66,7 +66,7 @@ router.get("/checkout", function (req, res) {
     if (req.session.user && req.session.user.roleID === 0) {
         res.render("checkout", { data: { cart: req.session.cart } });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -158,7 +158,7 @@ router.get("/accMgt/editprofile", function (req, res) {
     if (req.session.user && req.session.user.roleID === 0) {
         res.render("member/accMgt/editprofile", { data: { error: false } });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -186,7 +186,7 @@ router.get("/ctcategory/bodyskin", function (req, res) {
             res.render("ctcategory/bodyskin", { data: { error: "Không thể lấy danh sách sản phẩm!" } });
         });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -214,7 +214,7 @@ router.get("/ctcategory/beautyservice", function (req, res) {
             res.render("ctcategory/beautyservice", { data: { error: "Không thể lấy danh sách sản phẩm!" } });
         });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -242,7 +242,7 @@ router.get("/ctcategory/faceskin", function (req, res) {
             res.render("ctcategory/faceskin", { data: { error: "Không thể lấy danh sách sản phẩm!" } });
         });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -270,7 +270,7 @@ router.get("/ctcategory/formen", function (req, res) {
             res.render("ctcategory/formen", { data: { error: "Không thể lấy danh sách sản phẩm!" } });
         });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -298,7 +298,7 @@ router.get("/ctcategory/hairnail", function (req, res) {
             res.render("ctcategory/hairnail", { data: { error: "Không thể lấy danh sách sản phẩm!" } });
         });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -326,7 +326,7 @@ router.get("/ctcategory/makeup", function (req, res) {
             res.render("ctcategory/makeup", { data: { error: "Không thể lấy danh sách sản phẩm!" } });
         });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -354,7 +354,7 @@ router.get("/ctcategory/makeupcourse", function (req, res) {
             res.render("ctcategory/makeupcourse", { data: { error: "Không thể lấy danh sách sản phẩm!" } });
         });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -382,7 +382,7 @@ router.get("/ctcategory/makeupservice", function (req, res) {
             res.render("ctcategory/makeupservice", { data: { error: "Không thể lấy danh sách sản phẩm!" } });
         });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -410,7 +410,7 @@ router.get("/ctcategory/makeuptool", function (req, res) {
             res.render("ctcategory/makeuptool", { data: { error: "Không thể lấy danh sách sản phẩm!" } });
         });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -438,7 +438,7 @@ router.get("/ctcategory/perfume", function (req, res) {
             res.render("ctcategory/perfume", { data: { error: "Không thể lấy danh sách sản phẩm!" } });
         });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -464,13 +464,13 @@ router.get("/userdetailprod/:productID", function (req, res) {
             res.render("userdetailprod", { data: { error: "Không thể lấy dữ liệu sản phẩm này!" } });
         }
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
 router.post("/addtocart", function (req, res) {
     const { id, prodName, imageUrl, price } = req.body
-    // res.redirect('/guess/ctdetailprod/' + productId)
+    // res.redirect('/guest/ctdetailprod/' + productId)
     if (!req.session.cart) {
         req.session.cart = []
     }
@@ -514,7 +514,7 @@ router.get("/userlistnews", function (req, res) {
             res.render("userlistnews", { data: { error: "Không thể lấy danh sách tin tức!" } });
         });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -539,7 +539,7 @@ router.get("/userdetailnews/:newsID", function (req, res) {
             res.render("userdetailnews", { data: { error: "Không thể lấy dữ liệu tin tức này!" } });
         }
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -560,7 +560,7 @@ router.get("/userlistnoti", function (req, res) {
             res.render("userlistnoti", { data: { error: "Không thể lấy danh sách thông báo!" } });
         });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -585,7 +585,7 @@ router.get("/userdetailnoti/:notiID", function (req, res) {
             res.render("userdetailnoti", { data: { error: "Không thể lấy dữ liệu thông báo này!" } });
         }
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -623,7 +623,7 @@ router.get("/userlistorder", function (req, res) {
             res.render("userlistorder", { data: { error: "Không thể lấy danh sách đơn mua!" } });
         });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -661,7 +661,7 @@ router.get("/userdetailorder/:orderID", function (req, res) {
             res.render("userdetailorder", { data: { error: "Không thể lấy dữ liệu đơn hàng này!" } });
         }
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 

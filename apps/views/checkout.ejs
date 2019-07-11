@@ -69,7 +69,8 @@
             <form role="form" method="post" action="">
                 <div class="form-group">
                     <label for="addressdeli" style="font-size: 25px;">Địa chỉ nhận hàng</label>
-                    <input class="form-control addressdeli" name="addressdeli" placeholder="Nhập địa chỉ hiện tại của bạn" value="">
+                    <input class="form-control addressdeli" name="addressdeli"
+                        placeholder="Nhập địa chỉ hiện tại của bạn" value="">
                 </div>
             </form>
             <table class="table table-hover listoncart">
@@ -85,17 +86,18 @@
                 <tbody>
                     <% if(data && data.cart) {%>
                     <% for(let i=0; i < data.cart.length; i++){%>
+                    <%let totalPrice=0;%>
+                    <%totalPrice += data.cart[i].quantity * data.cart[i].price;%>
                     <tr>
                         <td> <%= data.cart[i].prodName%> </td>
                         <td> <%= data.cart[i].quantity%> </td>
-                        <td> <%= data.cart[i].price%> </td>
+                        <td style="text-align: center;"> <%= data.cart[i].price%> đồng </td>
+                        <td id="totalPrice" style="text-align: center;"> <%= totalPrice %> đồng </td>
                     </tr>
+
                     <%}%>
                     <%}%>
-                    <tr>
-                        <td colspan="3"></td>
-                        <td>  </td>
-                    </tr>
+
                 </tbody>
             </table>
         </div>
@@ -105,11 +107,7 @@
     </div>
 
     <%- include layout/footer %>
-    <!-- <script src="../static/libs/owlcarousel/owl.carousel.js"></script>
-    <script src="../static/libs/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../static/js/home.js"></script>
-    <script src="../static/js/category.js"></script>
-    <script src="../static/js/ctdetailprod.js"></script> -->
+
     <script src="../static/js/checkout.js"></script>
 </body>
 

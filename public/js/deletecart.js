@@ -4,7 +4,7 @@ $(document).ready(function () {
         console.log(productId)
         const baseUrl = "http://localhost:3000";
         $.ajax({
-            url: baseUrl + "/guess/cart/delete",
+            url: baseUrl + "/guest/cart/delete",
             type: "DELETE",
             data: {productId: productId},
             dataType: "json",

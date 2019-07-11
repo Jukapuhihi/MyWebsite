@@ -351,7 +351,7 @@ router.post("/signup", function (req, res) {
         const result = userMd.addUser(user);
 
         result.then(function (data) {
-            res.redirect("/guess/signin");
+            res.redirect("/guest/signin");
         }).catch(function (err) {
             res.render("signup", { data: { error: "Xin lỗi, bạn hãy thử lại nhé!" } });
         });
@@ -408,7 +408,7 @@ router.post("/signin", function (req, res) {
 router.post("/addtocart", function(req, res){
 
     const {id, prodName, quantity = 1, imageUrl, price} = req.body;
-    // res.redirect('/guess/ctdetailprod/' + productId)
+    // res.redirect('/guest/ctdetailprod/' + productId)
     if (!req.session.cart) {
         req.session.cart = []
     };

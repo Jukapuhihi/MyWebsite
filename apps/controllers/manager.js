@@ -28,7 +28,7 @@ router.get("/prodMgt/listprod", function (req, res) {
             res.render("manager/prodMgt/listprod", { data: { error: "Không thể lấy danh sách sản phẩm!" } });
         });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -37,7 +37,7 @@ router.get("/prodMgt/new", function (req, res) {
     if (req.session.user && req.session.user.roleID === 1) {
         res.render("manager/prodMgt/new", { data: { error: false } });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -87,7 +87,7 @@ router.get("/prodMgt/detailprod/:productID", function (req, res) {
             res.render("manager/prodMgt/detailprod", { data: { error: "Không thể lấy dữ liệu của sản phẩm này!" } });
         }
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -114,7 +114,7 @@ router.get("/prodMgt/editprod/:productID", function (req, res) {
             res.render("manager/prodMgt/editprod", { data: { error: "Không thể lấy dữ liệu của sản phẩm này!" } });
         }
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -172,7 +172,7 @@ router.get("/newsMgt/listnews", function (req, res) {
             res.render("manager/newsprodMgt/listnews", { data: { error: "Không thể lấy danh sách tin tức!" } });
         });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -180,7 +180,7 @@ router.get("/newsMgt/new", function (req, res) {
     if (req.session.user && req.session.user.roleID === 1) {
         res.render("manager/newsMgt/new", { data: { error: false } });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -232,7 +232,7 @@ router.get("/newsMgt/detailnews/:newsID", function (req, res) {
             res.render("manager/newsMgt/detailnews", { data: { error: "Không thể lấy dữ liệu tin tức này!" } });
         }
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -260,7 +260,7 @@ router.get("/newsMgt/editnews/:newsID", function (req, res) {
             res.render("manager/newsMgt/editnews", { data: { error: "Không thể lấy dữ liệu tin tức này!" } });
         }
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -318,7 +318,7 @@ router.get("/notiMgt/listnoti", function (req, res) {
             res.render("manager/notiprodMgt/listnoti", { data: { error: "Không thể lấy danh sách thông báo!" } });
         });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -326,7 +326,7 @@ router.get("/notiMgt/new", function (req, res) {
     if (req.session.user && req.session.user.roleID === 1) {
         res.render("manager/notiMgt/new", { data: { error: false } });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -378,7 +378,7 @@ router.get("/notiMgt/detailnoti/:notiID", function (req, res) {
             res.render("manager/notiMgt/detailnoti", { data: { error: "Không thể lấy dữ liệu thông báo này!" } });
         }
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -406,7 +406,7 @@ router.get("/notiMgt/editnoti/:notiID", function (req, res) {
             res.render("manager/notiMgt/editnoti", { data: { error: "Không thể lấy dữ liệu thông báo này!" } });
         }
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -464,7 +464,7 @@ router.get("/orderMgt/listorder", function (req, res) {
             res.render("manager/orderMgt/listorder", { data: { error: "Không thể lấy danh sách đơn bán!" } });
         });
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -493,7 +493,7 @@ router.get("/orderMgt/editorder/:orderID", function (req, res) {
             res.render("manager/orderMgt/editorder", { data: { error: "Không thể lấy dữ liệu đơn hàng này!" } });
         }
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 
@@ -521,7 +521,7 @@ router.get("/logout", function (req, res) {
         res.redirect("/");
         return res.status(200).send();
     } else {
-        res.redirect("/guess/signin");
+        res.redirect("/guest/signin");
     }
 });
 

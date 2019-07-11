@@ -15,7 +15,7 @@ $(document).ready(function () {
         const baseUrl = "http://localhost:3000";
         console.log('aaaaaaaaaaaaaaaa');
         $.ajax({
-            url: baseUrl + "/guess/addtocart",
+            url: baseUrl + "/guest/addtocart",
             type: "POST",
             data: obj,
             dataType: "json",

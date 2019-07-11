@@ -109,7 +109,7 @@
         
         <div class="content">
             
-            <div class="content__img" style="height: 50%;">
+            <div class="content__img" style="height: 450px;">
                 <!-- <img src="http://myphamxachtayduc.vn/wp-content/uploads/2016/08/bebe-young-care-intensivpflege-gesichtscreme-2.jpg"
                     alt=""> -->
                 <img src="/static/imgs/<% if (data && data.product) {%><%= data.product.productImg%><%}%>"
@@ -132,6 +132,7 @@
                     <input type="radio" name="color"> Trắng
                     <input type="radio" name="color"> Đen
                     <br> -->
+                    <p>Còn lại <% if (data && data.product) {%><%= data.product.quantity%><%}%> sản phẩm trong kho.</p>
                     <button type="button" productID="<% if (data && data.product) {%><%= data.product.productID%><%}%>" class="product__buy btn btn-danger addtocart"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Thêm vào giỏ</button>
                     <%} else {%>
                     <button type="button" class="product__buy btn btn-danger" disabled><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Thêm vào giỏ</button>
